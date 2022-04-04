@@ -12,6 +12,7 @@ import ModalBox from "@/components/ModalBox";
 import settingStyles from "@/styles/Settings.module.css";
 import styles from "@/styles/Cart.module.css";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 export async function getServerSideProps(ctx) {
 	const res = await fetch(`${SERVER_URL}/getAddress`, {
@@ -19,7 +20,10 @@ export async function getServerSideProps(ctx) {
 		credentials: "include",
 		headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined,
 	});
-
+	if (res.status !== 200)
+		return {
+			props: { addresses: null },
+		};
 	const { data } = await res.json();
 	return {
 		props: { addresses: data },
@@ -29,6 +33,24 @@ export async function getServerSideProps(ctx) {
 const Shipping = ({ addresses }) => {
 	const modalRef = useRef();
 	const [selectedAddress, setSelectedAddress] = useState(0);
+
+	if (!addresses) {
+		return (
+			<>
+				<Header />
+				<div
+					className="login_request_box"
+					style={{ minHeight: "50vh" }}
+				>
+					<h3>Please log in to access this page!</h3>
+					<Link href="/login" passHref>
+						<button>Login Page</button>
+					</Link>
+				</div>
+				<Footer />
+			</>
+		);
+	}
 
 	return (
 		<>

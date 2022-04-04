@@ -9,6 +9,7 @@ import CartProductItem, {
 import React, { useState } from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 export async function getServerSideProps(ctx) {
 	const res = await fetch(`${SERVER_URL}/getCartItems`, {
@@ -30,6 +31,24 @@ const Index = ({ data }) => {
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [products, setProducts] = useState(data);
 	const [isEmpty, setIsEmpty] = useState(data ? data.length <= 0 : 0);
+
+	if (!data) {
+		return (
+			<>
+				<Header />
+				<div
+					className="login_request_box"
+					style={{ minHeight: "50vh" }}
+				>
+					<h3>Please log in to access this page!</h3>
+					<Link href="/login" passHref>
+						<button>Login Page</button>
+					</Link>
+				</div>
+				<Footer />
+			</>
+		);
+	}
 
 	return (
 		<>

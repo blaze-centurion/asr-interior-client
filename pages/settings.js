@@ -8,7 +8,7 @@ import PanelLayout from "@/components/PanelLayout";
 import styles from "@/styles/Settings.module.css";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { SERVER_URL } from "config/config";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { GlobalUserContext } from "./_app";
 import validator from "validator";
@@ -35,14 +35,30 @@ const Settings = ({ userData }) => {
 	const modalRef = useRef();
 	const { currUserInfo, setCurrUserInfo } = useContext(GlobalUserContext);
 	const [userDetails, setUserDetails] = useState({
-		name: userData.name,
-		phone: userData.phone,
-		email: userData.email,
-		address: userData.address,
-		profilePic: userData.profilePic,
+		name: "",
+		phone: "",
+		email: "",
+		address: "",
+		profilePic: "",
 		password: "",
 		cpassword: "",
 	});
+
+	useEffect(() => {
+		if (!userData) {
+			return;
+		}
+
+		setUserDetails({
+			name: userData.name,
+			phone: userData.phone,
+			email: userData.email,
+			address: userData.address,
+			profilePic: userData.profilePic,
+			password: "",
+			cpassword: "",
+		});
+	}, [userData]);
 
 	if (!userData) {
 		return (

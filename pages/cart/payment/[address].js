@@ -24,6 +24,11 @@ export async function getServerSideProps(ctx) {
 		headers: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined,
 	});
 
+	if (res.status !== 200)
+		return {
+			props: { data: null },
+		};
+
 	const { data } = await res.json();
 	return {
 		props: { data },
@@ -33,10 +38,31 @@ export async function getServerSideProps(ctx) {
 const Payment = ({ data }) => {
 	const router = useRouter();
 	const subtotal = useRef(0);
+	const dependencies = data ? data.length : data;
 
 	useEffect(() => {
+		if (!data) return;
 		if (data.length === 0) router.push("/");
-	}, [data.length, router]);
+	}, [dependencies, router]);
+
+	
+	if (!data) {
+		return (
+			<>
+				<Header />
+				<div
+					className="login_request_box"
+					style={{ minHeight: "50vh" }}
+				>
+					<h3>Please log in to access this page!</h3>
+					<Link href="/login" passHref>
+						<button>Login Page</button>
+					</Link>
+				</div>
+				<Footer />
+			</>
+		);
+	}
 
 	const orderProduct = async (e) => {
 		e.preventDefault();
@@ -84,7 +110,6 @@ const Payment = ({ data }) => {
 				/>
 				<div className={styles.grid_card_container}>
 					<div>
-
 						<div className={styles.cart_card}>
 							<div className={styles.cart_card_header}>
 								Select a payment option
@@ -129,11 +154,15 @@ const Payment = ({ data }) => {
 											<label className={styles.labelName}>
 												Product
 											</label>
-											<label className={`${styles.labelVal}`}>
+											<label
+												className={`${styles.labelVal}`}
+											>
 												Total
 											</label>
 										</div>
-										<ul className={styles.sub_products_list}>
+										<ul
+											className={styles.sub_products_list}
+										>
 											{data.map((product, ind) => {
 												subtotal.current +=
 													product.discountedPrice *
@@ -153,7 +182,8 @@ const Payment = ({ data }) => {
 																		: product.productName.substring(
 																				0,
 																				35
-																		) + "..."}
+																		  ) +
+																		  "..."}
 																</a>
 															</Link>{" "}
 															<span>
@@ -180,9 +210,13 @@ const Payment = ({ data }) => {
 											<label className={styles.labelName}>
 												Subtotal:
 											</label>
-											<label className={`${styles.labelVal}`}>
+											<label
+												className={`${styles.labelVal}`}
+											>
 												₹
-												{numberWithCommas(subtotal.current)}
+												{numberWithCommas(
+													subtotal.current
+												)}
 											</label>
 										</div>
 									</li>
@@ -191,7 +225,9 @@ const Payment = ({ data }) => {
 											<label className={styles.labelName}>
 												Tax:
 											</label>
-											<label className={`${styles.labelVal}`}>
+											<label
+												className={`${styles.labelVal}`}
+											>
 												₹0.00
 											</label>
 										</div>
@@ -201,7 +237,9 @@ const Payment = ({ data }) => {
 											<label className={styles.labelName}>
 												Total Shipping:
 											</label>
-											<label className={`${styles.labelVal}`}>
+											<label
+												className={`${styles.labelVal}`}
+											>
 												₹0.00
 											</label>
 										</div>
@@ -211,9 +249,13 @@ const Payment = ({ data }) => {
 											<label className={styles.labelName}>
 												Total:
 											</label>
-											<label className={`${styles.labelVal}`}>
+											<label
+												className={`${styles.labelVal}`}
+											>
 												₹
-												{numberWithCommas(subtotal.current)}
+												{numberWithCommas(
+													subtotal.current
+												)}
 											</label>
 										</div>
 									</li>
