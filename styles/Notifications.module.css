@@ -1,0 +1,48 @@
+.notifications_container {
+	background-color: #fff;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	margin: 10px;
+	padding-bottom: 10px;
+}
+
+.notifications_container .notificationBox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px 5px;
+	padding: 20px 10px;
+	border-bottom: 1px solid #ebebeb;
+}
+.notifications_container .notificationBox .userDetailBox {
+	display: flex;
+	align-items: center;
+	width: 50%;
+	height: 100%;
+}
+.notifications_container .notificationBox .userDetailBox .detailBox {
+	margin-left: 5px;
+}
+.notifications_container .notificationBox .userDetailBox .detailBox .userName {
+	font-weight: 500;
+	font-size: 14px;
+}
+.notifications_container .notificationBox .userDetailBox .detailBox .date {
+	font-size: 12px;
+	font-weight: 500;
+	color: #000;
+	opacity: 0.6;
+}
+.notifications_container .notificationBox .contentBox {
+	padding-top: 10px;
+}
+.notifications_container .notificationBox .contentBox .notificationTitle {
+	font-size: 16px;
+	font-weight: 500;
+}
+.notifications_container .notificationBox .contentBox .notificationContent {
+	font-size: 14px;
+	color: #000;
+	opacity: 0.6;
+	margin-top: 3px;
+}

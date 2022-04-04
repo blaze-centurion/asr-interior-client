@@ -1,0 +1,139 @@
+.admin_panel {
+	width: 100vw;
+	height: 100vh;
+	background: #f2f3f8;
+	display: flex;
+}
+.admin_panel .sidebar {
+	width: 250px;
+	height: 100%;
+	background: #141423;
+}
+
+.admin_panel .sidebar .logo {
+	background-color: #1a1a27;
+	width: 250px;
+	height: 60px;
+	position: relative;
+}
+.admin_panel .sidebar .logo img {
+	width: 65px !important;
+	height: 65px !important;
+	filter: invert(100%);
+	cursor: pointer;
+}
+.admin_panel .sidebar .menuBox {
+	padding-top: 20px;
+}
+.admin_panel .sidebar .menuBox > ul li {
+	list-style: none;
+}
+.admin_panel .sidebar .menuBox ul li div.item {
+	display: flex;
+	align-items: center;
+	color: #a2a3b7;
+	padding: 6px 5px;
+	padding-left: 10px;
+	transition: all 0.3s;
+	cursor: pointer;
+}
+.admin_panel .sidebar .menuBox ul li div.item:hover {
+	background-color: #181827;
+	color: #fff;
+}
+.admin_panel .sidebar .menuBox ul li div.item a {
+	display: flex;
+	align-items: center;
+	padding: 6px 5px;
+	font-size: 15px;
+	font-family: var(--poppins);
+	text-transform: capitalize;
+	flex: 1;
+}
+.admin_panel .sidebar .menuBox ul li div.item .icon {
+	color: #7a7c9e;
+	width: 20px !important;
+	height: 20px !important;
+	margin-right: 10px;
+}
+
+.admin_panel .sidebar .menuBox ul li div.item .arrow_icon {
+	margin-right: 10px;
+	transform: rotate(-90deg);
+	transition: all 0.3s;
+}
+.admin_panel .sidebar .menuBox ul li.active div.item .arrow_icon {
+	transform: rotate(0deg);
+}
+
+.admin_panel .sidebar .menuBox ul li ul.submenu {
+	height: 0;
+	overflow: hidden;
+	transition: all 0.3s;
+}
+.admin_panel .sidebar .menuBox ul li.active > ul.submenu {
+	min-height: 70px;
+	height: auto;
+}
+.admin_panel .sidebar .menuBox ul li ul.submenu li {
+	padding: 7px 2rem;
+	list-style: disc !important;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.admin_panel .sidebar .menuBox ul li ul.submenu li:hover {
+	background-color: #181827;
+	color: #fff;
+}
+.admin_panel .sidebar .menuBox ul li ul.submenu li a {
+	font-size: 14px;
+	font-family: var(--poppins);
+	color: #a2a3b7;
+	font-weight: normal;
+}
+.admin_panel .main_container {
+	width: 100%;
+	overflow-y: auto;
+}
+.admin_panel .main_container .topbar {
+	display: flex;
+	align-items: center;
+	padding: 10px 20px;
+	background: #fff;
+}
+.admin_panel .main_container .topbar .toggleBtn {
+	border: none;
+	outline: none;
+	background: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.admin_panel .main_container .topbar .userDetails {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.admin_panel .main_container .topbar .userDetails .avatar {
+	border-radius: 50%;
+	margin-left: 10px;
+}
+.admin_panel .main_container .topbar .userDetails .notification {
+	margin-right: 10px;
+	cursor: pointer;
+}
+.admin_panel .main_container .topbar .userDetails div {
+	display: flex;
+	align-items: center;
+}
+.admin_panel .main_container .topbar .userDetails div p {
+	font-family: var(--poppins);
+	font-size: 12px;
+	margin: 0 5px;
+	font-weight: 500;
+}
+.admin_panel .main_container .topbar .userDetails div p.role {
+	opacity: 0.6;
+}

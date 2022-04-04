@@ -1,0 +1,14 @@
+.about_container {
+    padding: 1rem;
+}
+
+.about_container > h1.title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #363535;
+    margin-bottom: 20px;
+    position: relative;
+}

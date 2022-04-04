@@ -1,0 +1,208 @@
+/* ========================= */
+/* Gallery Section Styling */
+/* ========================= */
+
+.gallery_section {
+	margin: 0px 2.5rem;
+}
+
+.gallery_section .gallery_section_content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 2rem;
+	position: relative;
+}
+
+/* ========================= */
+/* Gallery Page Styling */
+/* ========================= */
+
+.gallery_container {
+	margin: 0px 3rem;
+	padding: 7px 1rem;
+}
+
+.gallery_container .gallery_title {
+	text-transform: capitalize;
+	text-align: center;
+	font-weight: 500;
+	font-size: 1.6rem;
+	color: #2f4858;
+	margin-top: 8px;
+}
+.gallery_container .gallery_pno {
+	text-align: center;
+	font-weight: 500;
+	font-size: 14px;
+	color: #000000;
+	opacity: 0.7;
+	margin-bottom: 20px;
+}
+
+.gallery_searchbar {
+	display: flex;
+	justify-content: center;
+}
+.gallery_searchbar input {
+	padding: 9px 20px;
+}
+
+.gallery_searchbar button {
+	padding: 9px 25px;
+	margin-left: 4px;
+}
+
+.gallery_container .content_container {
+	margin-top: 1rem;
+}
+
+.gallery_container .content_container .products_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 2rem;
+	position: relative;
+}
+
+.product_item {
+	min-width: 370px;
+	max-width: 370px;
+	background-color: #fff;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	overflow: hidden;
+}
+.product_item .product_img {
+	min-width: 100%;
+	min-height: 300px;
+	position: relative;
+	cursor: pointer;
+}
+.product_item .product_img img {
+	border-radius: 5px 5px 0 0;
+}
+.product_item .product_img .operation_btn_group {
+	display: flex;
+	flex-direction: column;
+}
+.product_item .product_img .operation_btn_group button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	border: none;
+	outline: none;
+	background-color: #fff;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	margin-bottom: 5px;
+	border-radius: 50%;
+	cursor: pointer;
+	color: rgb(80, 80, 80);
+	position: absolute;
+	top: 10px;
+	right: -40px;
+	transition: 0.3s;
+}
+.product_item .product_img .operation_btn_group button.addToCart {
+	top: 52px;
+	transition-delay: 0.1s;
+}
+
+.product_item:hover .product_img .operation_btn_group button {
+	right: 10px;
+}
+.product_item .product_img .operation_btn_group button:hover .tooltip {
+	opacity: 1;
+}
+.product_item .product_img .operation_btn_group button .tooltip {
+	position: absolute;
+	top: 50%;
+	right: 50px;
+	transform: translateY(-50%);
+	width: 110px;
+	background-color: rgb(37, 37, 37);
+	color: #fff;
+	padding: 10px 5px;
+	border-radius: 5px;
+	opacity: 0;
+	transition: 0.2s;
+	text-transform: capitalize;
+}
+.product_item .product_img .operation_btn_group button .tooltip::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 0px;
+	background-color: rgb(37, 37, 37);
+	width: 20px;
+	height: 20px;
+	z-index: -2;
+	transform: rotate(45deg) translateY(-50%);
+}
+
+.product_item .content {
+	padding: 15px 10px;
+}
+.product_item .content .price {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+}
+.product_item .content .price h2 {
+	font-size: 15px;
+	margin-right: 5px;
+	font-weight: 500;
+	font-family: var(--poppins);
+	color: #fe6948;
+}
+.product_item .content .price h2.basePrice {
+	color: rgb(141, 141, 141);
+	text-decoration: line-through;
+}
+.product_item .content .title {
+	font-weight: 500;
+	font-size: 15px;
+	color: rgb(37, 37, 37);
+	font-family: var(--poppins);
+}
+
+@media (max-width: 530px) {
+	.gallery_container {
+		margin: 0px 0;
+		padding: 7px 0rem;
+	}
+}
+
+@media (max-width: 500px) {
+	.gallery_searchbar {
+		width: 100vw;
+		margin: 10px 0px;
+	}
+}
+
+@media (max-width: 400px) {
+	.gallery_section {
+		margin: 0 5px;
+		justify-content: center;
+	}
+	.gallery_section .gallery_section_content {
+		justify-content: center;
+	}
+
+	.product_item {
+		max-width: 100%;
+		min-width: 100%;
+		margin-right: 0;
+	}
+}
+
+@media (max-width: 330px) {
+	.gallery_container .content_container .products_container {
+		padding: 0 3px;
+	}
+}

@@ -1,0 +1,81 @@
+.product_container {
+	padding: 1rem;
+}
+
+.product_container .product_container_header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20px;
+}
+.product_container .product_container_header h1 {
+	font-family: var(--poppins);
+	font-size: 18px;
+	font-weight: 400;
+}
+.product_container .product_container_header button {
+	border: none;
+	outline: none;
+	background-color: #25bcf1;
+	color: #fff;
+	padding: 10px 15px;
+	font-size: 13px;
+	font-family: var(--poppins);
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.product_container .product_container_header button:hover {
+	background: #138496;
+}
+.admin_panel_card {
+	background: #fff;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	margin: 1.5rem 1rem;
+}
+.admin_panel_card .admin_panel_card_header {
+	display: flex;
+	align-items: center;
+	padding: 12px 15px;
+	border-bottom: 1px solid #ebebeb;
+}
+
+.admin_panel_card .admin_panel_card_header h1 {
+	font-size: 16px;
+	font-family: var(--poppins);
+	font-weight: 500;
+}
+.admin_panel_card .admin_panel_card_content {
+	padding: 10px;
+}
+
+.admin_panel_card .admin_panel_card_content table tbody tr td,
+.admin_panel_card .admin_panel_card_content table tbody tr td a {
+	font-size: 14px;
+	font-family: var(--poppins);
+	transform: translate(5px, 5px);
+}
+
+
+/* Notifications Styling */
+
+.admin_panel_notifications_box {
+	padding: 10px;
+}
+.admin_panel_notifications_box li.admin_panel_notifications_box_item {
+	list-style: none;
+	border-bottom: 1px solid #ebebeb;
+	padding: 10px;
+}
+.admin_panel_notifications_box li.admin_panel_notifications_box_item h3 {
+	font-size: 15px;
+	font-weight: 500;
+	font-family: var(--poppins);
+	margin-bottom: 5px;
+}
+.admin_panel_notifications_box li.admin_panel_notifications_box_item p {
+	font-size: 13px;
+	font-family: var(--poppins);
+	opacity: 0.7;
+}

@@ -1,0 +1,180 @@
+.input_container {
+	position: relative;
+	padding: 0 10px;
+}
+.input_container .form_group {
+	display: flex;
+	align-items: center;
+	margin: 10px 0;
+	position: relative;
+}
+.input_container .form_group label {
+	flex: 0.5;
+	font-size: 14px;
+	color: #383737;
+}
+.input_container .form_group input[type="text"],
+.input_container .form_group input[type="email"] {
+	flex: 2;
+	padding: 9px 10px;
+	border: 1px solid #e2e5ec;
+	border-radius: 5px;
+	outline: none;
+	color: #505050;
+	font-size: 15px;
+}
+.input_container .form_group input[type="text"]:focus,
+.input_container .form_group input[type="email"]:focus {
+	border-color: #fe6948;
+}
+.input_container input[type="submit"] {
+	background-color: #fe6948;
+	color: #fff;
+	border: none;
+	outline: none;
+	padding: 10px;
+	float: right;
+	border-radius: 5px;
+	margin: 10px 0;
+	cursor: pointer;
+}
+.input_container .form_group .profilePicBox {
+	position: relative;
+	flex: 2;
+	border: 1px solid #e2e5ec;
+	border-radius: 5px;
+	outline: none;
+	color: #505050;
+	padding: 9px 10px;
+	font-size: 15px;
+	cursor: pointer;
+}
+.input_container .form_group .profilePicBox input[type="file"] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+.input_container .form_group .profilePicBox span {
+	width: 100px;
+	padding: 9px 20px;
+	margin-left: -10px;
+	background: #eee;
+	font-size: 14px;
+	display: inline;
+	border-radius: 5px 0 0 5px;
+}
+
+.addressBox {
+	/* display: flex;
+    align-items: center;
+    flex-wrap: wrap; */
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+	padding: 10px;
+}
+.addressBox .newAddressBox {
+	background-color: #f2f3f8;
+	border: 1px solid #e2e5ec;
+	flex: 1;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 2rem;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.addressBox .newAddressBox h4 {
+	font-weight: 400;
+	font-size: 16px;
+	text-transform: capitalize;
+}
+
+.addressBox .prevAddressBox {
+	border: 1px solid #e2e5ec;
+	flex: 1;
+	border-radius: 5px;
+	padding: 10px;
+	display: flex;
+}
+.addressBox .prevAddressBox ul {
+	flex: 1;
+}
+.addressBox .prevAddressBox ul li {
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	padding: 3px 5px;
+}
+.addressBox .prevAddressBox ul li label {
+	font-weight: 500;
+	margin-right: 10px;
+}
+
+.addressBox .prevAddressBox .moreBtn {
+	outline: none;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	position: relative;
+}
+
+.addressBox .prevAddressBox .moreBtn .moreMenuBox {
+	position: absolute;
+	top: 22px;
+	right: 10px;
+	background-color: #fff;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	border: 1px solid #e2e5ec;
+	border-radius: 5px;
+	padding: 5px 0;
+	transform: scale(0);
+	transform-origin: top right;
+	transition: 0.2s;
+}
+.addressBox .prevAddressBox .moreBtn .moreMenuBox.active {
+	transform: scale(1);
+}
+.addressBox .prevAddressBox .moreBtn .moreMenuBox ul li {
+	padding: 10px;
+	font-size: 14px;
+	min-width: 250px;
+	transition: 0.2s;
+}
+.addressBox .prevAddressBox .moreBtn .moreMenuBox ul li:hover {
+	background-color: #fe6948;
+	color: #fff;
+}
+
+@media (max-width: 880px) {
+	.addressBox {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+@media (max-width: 680px) {
+	.input_container .form_group label {
+		position: absolute;
+		top: -10px;
+		left: 10px;
+		background: #fff;
+		z-index: 1000;
+		font-size: 12px;
+	}
+	.input_container .form_group {
+		margin: 17px 0;
+	}
+	
+}
+
+@media (max-width: 430px) {
+	.input_container 
+	{
+		padding: 0;
+	}
+}

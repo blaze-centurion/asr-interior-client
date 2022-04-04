@@ -1,0 +1,136 @@
+#signup_section {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 20px;
+	margin-top: 20px;
+}
+#signup_section .container {
+	position: relative;
+	width: 800px;
+	height: 600px;
+	background: #fff;
+	box-shadow: 0 1px 5px rgb(0 0 0 / 13%);
+}
+#signup_section .container .signupBx {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+#signup_section .container .signupBx .imgBx {
+	position: relative;
+	width: 50%;
+	height: 100%;
+	background: #fff;
+	transition: 0.5s;
+	display: flex;
+	align-items: center;
+}
+
+#signup_section .container .signupBx .formBx {
+	position: relative;
+	width: 50%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* padding: 40px; */
+	padding: 40px 0;
+	transition: 0.5s;
+}
+#signup_section .container .signupBx .formBx form {
+	width: 65%;
+}
+#signup_section .container .signupBx .formBx form h2 {
+	font-size: 19px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 25px;
+	font-family: "Alegreya Sans SC", sans-serif !important;
+	color: #555;
+}
+
+#signup_section .container .signupBx .formBx .form_div {
+	position: relative;
+	width: 100%;
+	background: #fff;
+	color: #333;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	border-bottom: 1px solid #333;
+	margin: 25px 0;
+	margin-bottom: 20px;
+	display: flex;
+}
+
+#signup_section .container .signupBx .formBx .form_div input {
+	width: 90%;
+	padding: 0;
+	margin: 0;
+	position: relative;
+	width: 100%;
+	background: #fff;
+	color: #333;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	font-size: 14px;
+	letter-spacing: 1px;
+	font-weight: 400;
+	padding-left: 10px;
+	transition: 0.5s;
+}
+
+#signup_section .container .signupBx .formBx .form_div label {
+	position: relative;
+	width: 10%;
+	top: 5px;
+	transform: scale(0.7);
+}
+
+#signup_section .container .signupBx .formBx form input[type="submit"] {
+	width: 100%;
+	position: relative;
+	padding: 10px;
+	outline: none;
+	box-shadow: none;
+	max-width: 95px;
+	background: #2fc0f7;
+	color: #fff;
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	outline: none;
+	border: none;
+	border-radius: 2px;
+	transition: 0.5s;
+}
+#signup_section .container .signupBx .formBx .login_signup {
+	position: relative;
+	margin-top: 20px;
+	font-size: 12px;
+	letter-spacing: 1px;
+	color: #555;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+#signup_section .container .signupBx .formBx .login_signup a {
+	text-decoration: none;
+	color: #30baef;
+	font-weight: 600;
+}
+
+.login_section .container {
+	width: 750px !important;
+	height: 550px !important;
+}

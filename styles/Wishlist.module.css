@@ -1,0 +1,95 @@
+.wishlist_container {
+	padding: 1rem;
+	/* display: grid; */
+	/* grid-template-columns: repeat(3, 0fr); */
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.wishlist_container .product {
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	margin: 5px;
+}
+.wishlist_container .product .imgBox {
+	width: 320px;
+	height: 260px;
+	min-width: 100%;
+	position: relative;
+}
+.wishlist_container .product .imgBox img {
+	border-radius: 5px 5px 0 0;
+}
+
+.wishlist_container .product .content {
+	padding: 13px 10px;
+}
+.wishlist_container .product .content a.pName {
+	font-weight: 500;
+	font-size: 15px;
+	color: rgb(37, 37, 37);
+	font-family: var(--poppins);
+}
+.wishlist_container .product .content .price_box {
+	display: flex;
+	align-items: center;
+	padding-left: 2px;
+}
+.wishlist_container .product .content .price_box h4 {
+	margin-right: 6px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #fe6948;
+	font-family: var(--poppins);
+}
+.wishlist_container .product .content .price_box h4.basePrice {
+	color: rgb(141, 141, 141);
+	text-decoration: line-through;
+	font-size: 14px;
+}
+.wishlist_container .product .btnContainer {
+	border-top: 1px solid #ebebeb;
+	padding: 10px;
+	display: flex;
+}
+.wishlist_container .product .btnContainer button {
+	border: none;
+	outline: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	padding: 8px;
+	transition: 0.3s;
+}
+.wishlist_container .product .btnContainer button.deleteBtn {
+	background-color: transparent;
+	color: rgb(238 63 24);
+	margin-right: 10px;
+}
+.wishlist_container .product .btnContainer button.addToCart {
+	background-color: rgb(253, 90, 53);
+	color: #fff;
+	flex: 1;
+	font-size: 14px;
+	font-family: var(--poppins);
+	border-radius: 5px;
+}
+.wishlist_container .product .btnContainer button.addToCart:hover {
+	background-color: rgb(243, 70, 31);
+}
+
+@media (max-width: 700px) {
+	.wishlist_container .product {
+		width: 100%;
+	}
+}
+@media (max-width: 450px) {
+	.wishlist_container {
+		padding: 1rem 0;
+	}
+	.wishlist_container .product {
+		width: 100%;
+	}
+}

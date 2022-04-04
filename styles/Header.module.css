@@ -1,0 +1,250 @@
+.navbar {
+	display: flex;
+	padding-top: 5px;
+	border-bottom: 1px solid #ebebeb;
+	margin: 0 20px;
+}
+
+.navbar .logo {
+	margin: 0 0 0 20px;
+}
+.navbar .logo img {
+	max-width: 65px;
+	max-height: 62px;
+}
+
+.navbar .menu_items {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+}
+.navbar .menu_items .menu_item {
+	list-style: none;
+	margin: 0 2px;
+}
+.navbar .menu_items .menu_item a {
+	display: block;
+	font-size: 14.2px;
+	font-weight: 500;
+	color: #5d5d5d;
+	padding: 10px 13px;
+	transition: 0.2s;
+}
+.navbar .menu_items .menu_item a:hover,
+.navbar .menu_items .menu_item a.active {
+	color: rgb(19, 19, 19);
+}
+.navbar .menu_items .menu_item a.signUp {
+	border: 1px solid #d4d4d4;
+	border-radius: 10pc;
+	padding: 6px 20px;
+}
+.navbar .menu_items .menu_item a.signUp:hover,
+.navbar .menu_items .menu_item a.signUp.active {
+	color: #ad1deb;
+	border-color: #ad1deb;
+}
+
+.navbar .menu_btns {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding-right: 2rem;
+	min-width: 100px;
+}
+.navbar .menu_btns > li {
+	list-style: none;
+	margin: 0 5px;
+}
+.navbar .menu_btns > li > a,
+.navbar .menu_btns > li > button {
+	position: relative;
+	background-color: #ad1deb;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	padding: 8px;
+	border-radius: 50%;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	transition: 0.3s;
+}
+.navbar .menu_btns > li > button .btn_icon,
+.navbar .menu_btns > li a .btn_icon {
+	width: 19px;
+	height: 19px;
+}
+.navbar .menu_btns > li > a {
+	background-color: transparent;
+	color: #79889e;
+	border: 1px solid #d4d4d4;
+	text-transform: capitalize;
+}
+.navbar .menu_btns > li > a:hover,
+.navbar .menu_btns > li > a.active {
+	color: #ad1deb;
+	border-color: #ad1deb;
+}
+
+.navbar .menu_btns > li > a span.badge {
+	position: absolute;
+	top: -7px;
+	right: -7px;
+	background: #fe6948;
+	color: #fff;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	font-size: 11px;
+	font-family: var(--poppins);
+}
+
+.profile_item {
+	position: relative;
+}
+.profile_item.mediaq {
+	display: none;
+}
+div.avatar {
+	position: relative;
+	width: 35px;
+	padding: 5px;
+	height: 35px;
+	border: 1px solid #d4d4d4;
+	border-radius: 50%;
+	cursor: pointer;
+}
+div.avatar.nonborder {
+	border: none;
+}
+div.avatar.nonborder img {
+	opacity: 1;
+}
+div.avatar img {
+	opacity: 0.8;
+}
+
+.profile_item .menu_box {
+	list-style: none;
+	position: absolute;
+	top: 45px;
+	right: 5px;
+	min-width: 230px;
+	background: #fff;
+	box-shadow: 1px 0 2px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	z-index: 1000;
+	overflow: hidden;
+	transform: scale(0);
+	transform-origin: top right;
+	transition: all 0.2s;
+}
+.profile_item.active .menu_box {
+	transform: scale(1);
+}
+.profile_item .menu_box li:hover {
+	background: rgb(245, 245, 245);
+}
+.profile_item .menu_box li a {
+	font-family: var(--poppins);
+	font-size: 14px;
+	text-transform: capitalize;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 12px 15px;
+	color: rgb(73, 73, 73);
+}
+.profile_item .menu_box li a .ico {
+	margin-right: 10px;
+	width: 20px !important;
+	height: 20px !important;
+}
+.profile_item .menu_box li a span {
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--poppins);
+	background: #fe6948;
+	color: #fff;
+	font-size: 12px;
+	border-radius: 50%;
+	margin-left: 5px;
+	margin-top: -5px;
+}
+
+.hamburger_menu {
+	display: none;
+}
+.hamburger_menu.hamactive .menu_box {
+	transform: scale(1);
+}
+
+.cat_navbar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: 1px solid #ebebeb;
+	margin: 0 20px;
+}
+.cat_navbar ul {
+	display: flex;
+	align-items: center;
+}
+.cat_navbar ul li {
+	list-style: none;
+}
+.cat_navbar ul li a {
+	display: block;
+	font-size: 15px;
+	border-bottom: 2px solid #fff;
+	padding: 10px 15px;
+	transition: 0.2s;
+}
+.cat_navbar ul li a:hover {
+	border-bottom: 2px solid #fe6948;
+}
+
+@media (max-width: 850px) {
+	.navbar .menu_items {
+		display: none;
+	}
+	.navbar .menu_btns {
+		flex: 1;
+		justify-content: flex-end;
+	}
+	.hamburger_menu {
+		display: block;
+	}
+}
+
+@media (max-width: 500px) {
+	.navbar {
+		margin: 0 10px;
+	}
+	.cat_navbar {
+		margin: 0 10px;
+	}
+
+	.navbar .logo {
+		margin: 0 0 0 10px;
+	}
+
+	.navbar .menu_btns {
+		padding-right: 1rem;
+	}
+}
+
+@media (max-width: 350px) {
+	.navbar .menu_btns {
+		padding-right: 0rem;
+	}
+}
