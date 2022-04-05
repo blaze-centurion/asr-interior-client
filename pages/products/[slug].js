@@ -53,7 +53,7 @@ const Product = ({ data }) => {
 			</Head>
 			<Breadcrumbs
 				separator={<NavigateNextIcon fontSize="small" />}
-				style={{ padding: "1rem 5rem 0 4rem", fontSize: "14px" }}
+				className="breadcrumbs product_page"
 				aria-label="breadcrumb"
 			>
 				{breadcrumbs}

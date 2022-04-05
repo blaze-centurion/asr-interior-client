@@ -38,7 +38,7 @@ const Settings = ({ userData }) => {
 		name: "",
 		phone: "",
 		email: "",
-		address: "",
+		address: [],
 		profilePic: "",
 		password: "",
 		cpassword: "",

@@ -12,6 +12,7 @@ import loginPic from "@/public/login.svg";
 import styles from "@/styles/Login.Signup.module.css";
 import { GlobalUserContext } from "./_app";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
@@ -34,6 +35,9 @@ const Login = () => {
 
 		const data = await res.json();
 		if (res.status === 200) {
+			document.cookie = `jwtoken=${data.token}; expires=${new Date(
+				Date.now() + 25892000000
+			)}`;
 			setCurrUserInfo({
 				email: data.data.email,
 				name: data.data.name,

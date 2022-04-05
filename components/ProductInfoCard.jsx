@@ -15,7 +15,9 @@ import MessageModalBox from "./MessageModalBox";
 const ProductInfoCard = ({ data }) => {
 	const currImgInd = useRef(0);
 	const [currAttrInd, setCurrAttrInd] = useState(0);
-	const [currImg, setCurrImg] = useState(data.variations[currAttrInd].images[0].url);
+	const [currImg, setCurrImg] = useState(
+		data.variations[currAttrInd].images[0].url
+	);
 	const [qty, setQty] = useState(1);
 	const modalRef = useRef();
 
@@ -27,8 +29,11 @@ const ProductInfoCard = ({ data }) => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ pid: data._id }),
 		});
+		
 		if (res.status === 200) {
 			toast.success("Item added to your wishlist.");
+		} else if (res.status === 401) {
+			toast.error("Please log in to add this item to your wishlist.");
 		} else {
 			toast.error("Something went wrong. Please try again!");
 		}
@@ -44,6 +49,8 @@ const ProductInfoCard = ({ data }) => {
 		});
 		if (res.status === 200) {
 			toast.success("Item added to your cart.");
+		} else if (res.status === 401) {
+			toast.error("Please log in to add this item to your cart.");
 		} else {
 			toast.error("Something went wrong. Please try again!");
 		}
@@ -86,6 +93,8 @@ const ProductInfoCard = ({ data }) => {
 										src={img.url}
 										layout="fill"
 										alt={`${data.productName} ${ind}`}
+										placeholder="blur"
+										blurDataURL="/image-blur-placeholder.png"
 									/>
 								</li>
 							);
@@ -188,11 +197,18 @@ const ProductInfoCard = ({ data }) => {
 										<li
 											key={ind}
 											data-color={variation.value}
-											className={currAttrInd ===ind ?styles.active : "non-active"}
+											className={
+												currAttrInd === ind
+													? styles.active
+													: "non-active"
+											}
 											onClick={() => {
-												setCurrAttrInd(ind)
-												setCurrImg(data.variations[ind].images[0].url);
-												currImgInd.current = 0
+												setCurrAttrInd(ind);
+												setCurrImg(
+													data.variations[ind]
+														.images[0].url
+												);
+												currImgInd.current = 0;
 											}}
 											style={{
 												background: variation.value,

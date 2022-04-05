@@ -23,25 +23,20 @@ const Header = () => {
 	const router = useRouter();
 	const searchInputRef = useRef();
 	const searchInput = useRef();
-	const { currUserInfo, setCurrUserInfo } = useContext(GlobalUserContext);
+	const { currUserInfo } = useContext(GlobalUserContext);
 	const [categories, setCategories] = useState([]);
 	const [cartLen, setCartLen] = useState(0);
 	const [wishlistLen, setWishlistLen] = useState(0);
 	const [profileItemState, setProfileItemState] = useState(false);
 	const [hamburderMenuState, setHamburderMenuState] = useState(false);
 
-	const logout = async (e) => {
-		const res = await fetch(`${SERVER_URL}/logout`, {
-			method: "GET",
-			credentials: "include",
+	const logout = async () => {
+		const res = await axios.get(`${SERVER_URL}/logout`, {
+			withCredentials: true,
 		});
-		if (res.status === 200)
-			setCurrUserInfo({
-				name: "",
-				email: "",
-				phone: "",
-				loggedIn: false,
-			});
+		if (res.status === 200) {
+			window.location.reload();
+		}
 	};
 
 	useEffect(() => {

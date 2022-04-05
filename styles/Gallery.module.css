@@ -180,7 +180,7 @@
 
 @media (max-width: 500px) {
 	.gallery_searchbar {
-		width: 100vw;
+		width: 100%;
 		margin: 10px 0px;
 	}
 }
