@@ -60,7 +60,7 @@ const Login = () => {
 		<>
 			<Header />
 			<ToastContainer position="bottom-left" />
-			<div style={{ width: "85%", margin: "auto" }}>
+			<div className={styles.box}>
 				<section
 					id={styles.signup_section}
 					className={styles.login_section}
