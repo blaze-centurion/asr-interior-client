@@ -22,6 +22,8 @@
 	outline: none;
 	color: #505050;
 	font-size: 15px;
+	transition: border-color 0.2s ease-out;
+
 }
 .input_container .form_group input[type="text"]:focus,
 .input_container .form_group input[type="email"]:focus {

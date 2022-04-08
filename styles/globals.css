@@ -142,6 +142,7 @@ input[type="number"] {
 	background-color: #fff;
 	border: 1px solid #ebebeb;
 	outline: none;
+	transition: border-color 0.2s ease-out;
 }
 .search_bar input:focus {
 	border-color: #ad1deb;
@@ -247,7 +248,7 @@ input[type="number"] {
 	align-items: center;
 	justify-content: center;
 	background-color: #42424252;
-	z-index: 1000;
+	z-index: 1100;
 	overflow: hidden;
 	transition: 0.4s;
 }
@@ -350,7 +351,7 @@ input[type="number"] {
 	label {
 	font-weight: 500;
 	font-size: 14px;
-	margin: 5px 0 15px 15px;
+	margin: 5px 0 5px 15px;
 	flex: 1;
 }
 .modal_container
@@ -396,6 +397,7 @@ input[type="number"] {
 }
 
 .address_form_group {
+	position: relative;
 	display: flex;
 	align-items: center;
 	margin: 10px 0;
@@ -418,6 +420,7 @@ input[type="number"] {
 	color: #505050;
 	font-size: 15px;
 	max-height: 150px;
+	transition: border-color 0.2s ease-out;
 }
 .address_form_group input:focus,
 .address_form_group textarea:focus {
@@ -760,13 +763,29 @@ input[type="number"] {
 	.search_bar button {
 		padding: 9px 20px;
 	}
+	.modal_container
+		.modal_inner
+		.modal_content_container
+		.modal_card
+		.modal_card_content
+		ul.order_summary_box {
+		grid-template-columns: 1fr;
+	}
+	.modal_container
+		.modal_inner
+		.modal_content_container
+		.modal_card
+		.modal_card_content
+		ul.order_summary_box
+		li {
+		margin: 8px 0;
+	}
 }
 
 @media (max-width: 570px) {
 	.breadcrumbs.product_page {
 		font-size: 13px;
-		
-	} 
+	}
 
 	.breadcrumbs.product_page .breadcrumbs_link.active {
 		font-size: 14px;

@@ -15,7 +15,6 @@
     "@mui/material": "^5.4.3",
     "axios": "^0.26.0",
     "chart.js": "^3.7.1",
-    "firebase": "^9.6.8",
     "next": "12.1.0",
     "next-seo": "^5.1.0",
     "pusher-js": "^7.0.6",

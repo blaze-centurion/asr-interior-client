@@ -141,7 +141,7 @@ const Footer = () => {
 							height="60px"
 						/>
 					</div>
-					<p>© ASR Interior 2022</p>
+					<p>&copy; ASR Interior 2022</p>
 					<div className={styles.social_icons}>
 						<Link href="/">
 							<a>

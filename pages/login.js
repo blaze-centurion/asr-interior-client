@@ -12,7 +12,6 @@ import loginPic from "@/public/login.svg";
 import styles from "@/styles/Login.Signup.module.css";
 import { GlobalUserContext } from "./_app";
 import { useRouter } from "next/router";
-import axios from "axios";
 
 const Login = () => {
 	const [email, setEmail] = useState("");

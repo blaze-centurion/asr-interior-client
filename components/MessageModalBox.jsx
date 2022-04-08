@@ -28,6 +28,14 @@ const MessageModalBox = forwardRef((props, ref) => {
 				</button>
 				<button className="address_form_button_group">Send</button>
 			</div>
+
+			<style jsx>{`
+				@media (max-width:430px) {
+					.address_form_button_group{
+						font-size: 13px;
+					}
+				}
+			`}</style>
 		</>
 	);
 });

@@ -62,7 +62,7 @@ const ProductInfoCard = ({ data }) => {
 				ref={modalRef}
 				headerTitle="Any query about this product"
 				modalInnerStyle={{
-					width: "35vw",
+					width: "40vw",
 					height: "auto",
 					minHeight: "30vh",
 				}}

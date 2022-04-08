@@ -29,6 +29,27 @@ const ModalBox = forwardRef(
 						</div>
 					</div>
 				</section>
+
+				<style jsx>{`
+					.modal_inner {
+						overflow: auto;
+					}
+					@media (max-width: 1100px) {
+						.modal_inner {
+							width: 90vw !important;
+						}
+					}
+					@media (max-width: 375px) {
+						.modal_container .modal_inner .modal_content_container {
+							padding: 1rem 5px;
+						}
+					}
+					@media (max-width: 600px) {
+						.modal_inner {
+							width: 97vw !important;
+						}
+					}
+				`}</style>
 			</>
 		);
 	}

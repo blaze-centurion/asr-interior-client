@@ -46,61 +46,82 @@ const AddressModal = () => {
 	};
 
 	return (
-		<form onSubmit={addAddress}>
-			<div className="address_form_group">
-				<label>Address:</label>
-				<textarea
-					name="address"
-					value={input.address}
-					onChange={handleInput}
-					style={{ height: "150px" }}
-					placeholder="Your address"
-				></textarea>
-			</div>
-			<div className="address_form_group">
-				<label>State:</label>
-				<input
-					type="text"
-					name="state"
-					value={input.state}
-					onChange={handleInput}
-					placeholder="Your State"
-				/>
-			</div>
-			<div className="address_form_group">
-				<label>City:</label>
-				<input
-					type="text"
-					name="city"
-					value={input.city}
-					onChange={handleInput}
-					placeholder="Your City"
-				/>
-			</div>
-			<div className="address_form_group">
-				<label>Postal Code:</label>
-				<input
-					type="text"
-					name="postalCode"
-					value={input.postalCode}
-					onChange={handleInput}
-					placeholder="Your Postal Code"
-				/>
-			</div>
-			<div className="address_form_group">
-				<label>Phone No:</label>
-				<input
-					type="text"
-					name="phone"
-					value={input.phone}
-					onChange={handleInput}
-					placeholder="Your Phone Number"
-				/>
-			</div>
-			<div className="address_form_submit_group">
-				<input type="submit" value="Add Address" />
-			</div>
-		</form>
+		<>
+			<form onSubmit={addAddress}>
+				<div className="address_form_group">
+					<label>Address:</label>
+					<textarea
+						name="address"
+						value={input.address}
+						onChange={handleInput}
+						style={{ height: "150px" }}
+						placeholder="Your address"
+					></textarea>
+				</div>
+				<div className="address_form_group">
+					<label>State:</label>
+					<input
+						type="text"
+						name="state"
+						value={input.state}
+						onChange={handleInput}
+						placeholder="Your State"
+					/>
+				</div>
+				<div className="address_form_group">
+					<label>City:</label>
+					<input
+						type="text"
+						name="city"
+						value={input.city}
+						onChange={handleInput}
+						placeholder="Your City"
+					/>
+				</div>
+				<div className="address_form_group">
+					<label>Postal Code:</label>
+					<input
+						type="text"
+						name="postalCode"
+						value={input.postalCode}
+						onChange={handleInput}
+						placeholder="Your Postal Code"
+					/>
+				</div>
+				<div className="address_form_group">
+					<label>Phone No:</label>
+					<input
+						type="text"
+						name="phone"
+						value={input.phone}
+						onChange={handleInput}
+						placeholder="Your Phone Number"
+					/>
+				</div>
+				<div className="address_form_submit_group">
+					<input type="submit" value="Add Address" />
+				</div>
+			</form>
+
+			<style jsx>{`
+				@media (max-width: 470px) {
+					.address_form_group {
+						margin: 18px 0;
+					}
+					.address_form_group label {
+						position: absolute;
+						top: -10px;
+						left: 10px;
+						background: #fff;
+					}
+					.address_form_group input,
+					.address_form_group textarea {
+						flex: 1;
+						padding: 10px 10px;
+					}
+				}
+			`}</style>
+		</>
 	);
 };
 

@@ -5,7 +5,6 @@ import HeroSection from "@/components/HeroSection";
 import Services from "@/components/Services";
 import WhyUsSection from "@/components/WhyUsSection";
 import WWHDSection from "@/components/WWHDSection";
-import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import Header from "../components/Header";
 
