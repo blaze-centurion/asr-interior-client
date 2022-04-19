@@ -1,7 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import WorkingPage from "@/components/WorkingPage";
-// import styles from "@/styles/About.module.css";
 
 const About = () => {
 	return (
