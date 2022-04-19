@@ -10,21 +10,14 @@ import { SERVER_URL } from "config/config";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Head from "next/head";
+import axios from "axios";
 
 export async function getServerSideProps() {
-	const res = await fetch(`${SERVER_URL}/getParentCategories`, {
-		method: "GET",
-		credentials: "include",
-		headers: { "Content-Type": "application/json" },
-	});
-	const productRes = await fetch(`${SERVER_URL}/getProducts`, {
-		method: "GET",
-		credentials: "include",
-		headers: { "Content-Type": "application/json" },
-	});
-	const cats = await res.json();
+	const res = await axios.get(`${SERVER_URL}/getParentCategories`);
+	const productRes = await axios.get(`${SERVER_URL}/getProducts`);
+	const cats = res.data;
 	return {
-		props: { cats: cats.data, products: (await productRes.json()).data },
+		props: { cats: cats.data, products: productRes.data.data },
 	};
 }
 
