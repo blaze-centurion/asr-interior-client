@@ -7,11 +7,14 @@ import GalleryItem from "./GalleryItem";
 const GallerySection = () => {
 	const [data, setData] = useState([]);
 
-	useEffect(async () => {
-		const res = await axios.get(`${SERVER_URL}/getProducts/10`);
-		setData(res.data.data);
+	useEffect(() => {
+		fetchData();
 	}, []);
 
+	async function fetchData() {
+		const res = await axios.get(`${SERVER_URL}/getProducts/10`);
+		setData(res.data.data);
+	}
 	return (
 		<>
 			<section id="services" className={styles.gallery_section}>
