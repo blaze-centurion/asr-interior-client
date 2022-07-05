@@ -1,48 +1,71 @@
-.notifications_container {
+.container {
 	background-color: #fff;
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	margin: 1rem;
 	border-radius: 5px;
-	margin: 10px;
-	padding-bottom: 10px;
+}
+.container .header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 20px;
+	border-bottom: 1px solid #ebebeb;
+	border-radius: 5px 5px 0 0;
+}
+.container .header h3 {
+	font-weight: 500;
+	font-family: var(--poppins);
+	font-size: 16px;
+}
+.container .header .headerBtn {
+	border: none;
+	outline: none;
+	background-color: #fe6948;
+	color: #fff;
+	font-family: var(--poppins);
+	font-size: 12px;
+	border-radius: 5px;
+	padding: 10px 15px;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+.container .header .headerBtn:hover {
+	opacity: 0.9;
+}
+.container .content {
+	padding: 10px 15px;
+}
+.container .content ul.notifications li:nth-child(1) {
+	border-top: none;
+}
+.container .content ul.notifications li {
+	position: relative;
+	list-style: none;
+	border-top: 1px solid #ebebeb;
+	padding: 1rem;
+}
+.container .content ul.notifications li p {
+	font-size: 14px;
+	font-family: var(--poppins);
 }
 
-.notifications_container .notificationBox {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 10px 5px;
-	padding: 20px 10px;
-	border-bottom: 1px solid #ebebeb;
+.container .content ul.notifications li p a {
+	color: #fe6948;
+	font-family: var(--poppins);
 }
-.notifications_container .notificationBox .userDetailBox {
-	display: flex;
-	align-items: center;
-	width: 50%;
-	height: 100%;
+
+.container .content ul.notifications li p.date {
+	font-size: 13px;
+	opacity: 0.8;
+	margin-top: 5px;
 }
-.notifications_container .notificationBox .userDetailBox .detailBox {
-	margin-left: 5px;
-}
-.notifications_container .notificationBox .userDetailBox .detailBox .userName {
-	font-weight: 500;
-	font-size: 14px;
-}
-.notifications_container .notificationBox .userDetailBox .detailBox .date {
-	font-size: 12px;
-	font-weight: 500;
-	color: #000;
-	opacity: 0.6;
-}
-.notifications_container .notificationBox .contentBox {
-	padding-top: 10px;
-}
-.notifications_container .notificationBox .contentBox .notificationTitle {
-	font-size: 16px;
-	font-weight: 500;
-}
-.notifications_container .notificationBox .contentBox .notificationContent {
-	font-size: 14px;
-	color: #000;
-	opacity: 0.6;
-	margin-top: 3px;
+
+.container .content ul.notifications li .indicator {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 6px;
+	height: 6px;
+	background: #fe6948;
+	border-radius: 50%;
 }

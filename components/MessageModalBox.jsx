@@ -1,11 +1,11 @@
 import { forwardRef } from "react";
 
-const MessageModalBox = forwardRef((props, ref) => {
+const MessageModalBox = forwardRef((_, ref) => {
 	return (
 		<>
-			<div className="address_form_group">
+			{/* <div className="address_form_group">
 				<input type="text" placeholder="Product Name" />
-			</div>
+			</div> */}
 			<div className="address_form_group">
 				<textarea
 					style={{ height: "150px" }}
@@ -30,8 +30,8 @@ const MessageModalBox = forwardRef((props, ref) => {
 			</div>
 
 			<style jsx>{`
-				@media (max-width:430px) {
-					.address_form_button_group{
+				@media (max-width: 430px) {
+					.address_form_button_group {
 						font-size: 13px;
 					}
 				}

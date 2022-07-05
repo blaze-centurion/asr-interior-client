@@ -3,9 +3,8 @@ import Header from "@/components/Header";
 import styles from "@/styles/Cart.module.css";
 import CartBtnBox from "@/components/CartBtnBox";
 import { SERVER_URL } from "config/config";
-import CartProductItem, {
-	numberWithCommas,
-} from "@/components/CartProductItem";
+import CartProductItem from "@/components/CartProductItem";
+import { numberWithCommas } from "utils/utils";
 import React, { useState } from "react";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import Footer from "@/components/Footer";

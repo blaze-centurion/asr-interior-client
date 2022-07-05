@@ -1,5 +1,9 @@
-import { numberWithCommas } from "./CartProductItem";
+import axios from "axios";
+import { SERVER_URL } from "config/config";
+import Link from "next/link";
+import { numberWithCommas } from "../utils/utils";
 import ModalCard from "./ModalCard";
+import Selectbox from "./Selectbox";
 
 const AdminOrderDetailModalBox = ({
 	orderCode,
@@ -10,10 +14,21 @@ const AdminOrderDetailModalBox = ({
 	totalPrice,
 	shippingAddress,
 	paymentMethod,
-	product,
+	products,
 	deliveryStatus,
 	paymentStatus,
 }) => {
+	const changeStatus = async (val, endPoint) => {
+		const res = await axios.patch(`${SERVER_URL}/${endPoint}`, {
+			email: customerEmail,
+			orderCode,
+			status: val,
+		});
+		if (res.status === 200) {
+			window.location.reload();
+		}
+	};
+
 	return (
 		<>
 			<ModalCard cardTitle="Order Summary">
@@ -57,7 +72,19 @@ const AdminOrderDetailModalBox = ({
 								deliveryStatus ? "success" : undefined
 							}`}
 						>
-							<p>{deliveryStatus ? "Delivered" : "Pending"}</p>
+							<Selectbox
+								options={[
+									{ name: "Delivered", value: true },
+									{ name: "Pending", value: false },
+								]}
+								giveVal={true}
+								selected={`${
+									deliveryStatus ? "Delivered" : "Pending"
+								}`}
+								onClick={(val) =>
+									changeStatus(val, "changeDelStatus")
+								}
+							/>
 						</h4>
 					</li>
 					<li>
@@ -67,7 +94,17 @@ const AdminOrderDetailModalBox = ({
 								paymentStatus ? "success" : undefined
 							}`}
 						>
-							<p>{paymentStatus ? "Paid" : "Unpaid"}</p>
+							<Selectbox
+								options={[
+									{ name: "Paid", value: true },
+									{ name: "Unpaid", value: false },
+								]}
+								giveVal={true}
+								selected="Unpaid"
+								onClick={(val) =>
+									changeStatus(val, "changePaymentStatus")
+								}
+							/>
 						</h4>
 					</li>
 				</ul>
@@ -81,22 +118,43 @@ const AdminOrderDetailModalBox = ({
 							<th>Product</th>
 							<th>Variaton</th>
 							<th>Quantity</th>
+							<th>Rate</th>
 							<th>Price</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td data-label="#">1</td>
-							<td data-label="Product">{product.productName}</td>
-							<td data-label="Variaton">{product.variation}</td>
-							<td data-label="Quantity">{product.qty}</td>
-							<td data-label="Price">
-								₹
-								{numberWithCommas(
-									product.price ? product.price : 0
-								)}
-							</td>
-						</tr>
+						{products.map((product, i) => {
+							return (
+								<tr key={i}>
+									<td data-label="#">{i + 1}</td>
+									<td data-label="Product">
+										<Link
+											href={`/products/${product.productName}`}
+										>
+											<a>{product.productName}</a>
+										</Link>
+									</td>
+									<td data-label="Variaton">
+										{product.variation}
+									</td>
+									<td data-label="Quantity">{product.qty}</td>
+									<td data-label="Rate">
+										₹
+										{numberWithCommas(
+											product.price ? product.price : 0
+										)}
+									</td>
+									<td data-label="Price">
+										₹
+										{numberWithCommas(
+											product.price
+												? product.price * product.qty
+												: 0
+										)}
+									</td>
+								</tr>
+							);
+						})}
 					</tbody>
 				</table>
 			</ModalCard>
@@ -104,4 +162,4 @@ const AdminOrderDetailModalBox = ({
 	);
 };
 
-export default AdminOrderDetailModalBox
+export default AdminOrderDetailModalBox;

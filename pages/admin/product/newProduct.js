@@ -53,20 +53,23 @@ const NewProduct = ({ categories, variationsData }) => {
 	const saveProduct = async () => {
 		console.log(variations);
 
-		const isEmpty = variations.reduce((previousValue, currentValue, currentIndex) => {
-			const keys = Object.keys(currentValue).filter(
-				(key) => currentValue[key].length === 0 
-			);
+		const isEmpty = variations.reduce(
+			(previousValue, currentValue, currentIndex) => {
+				const keys = Object.keys(currentValue).filter(
+					(key) => currentValue[key].length === 0
+				);
 
-			if (keys.length) {
-				previousValue[currentIndex] = keys;
-			}
+				if (keys.length) {
+					previousValue[currentIndex] = keys;
+				}
 
-			return previousValue;
-		}, {});
+				return previousValue;
+			},
+			{}
+		);
 
-		if (Object.keys(isEmpty).length!==0) {
-			return toast.error("Please fill all the variations details.")
+		if (Object.keys(isEmpty).length !== 0) {
+			return toast.error("Please fill all the variations details.");
 		}
 
 		if (
@@ -77,9 +80,7 @@ const NewProduct = ({ categories, variationsData }) => {
 			!productInput.desc ||
 			variations.length === 0
 		) {
-			return toast.error(
-				"Please fill all the required fields"
-			);
+			return toast.error("Please fill all the required fields");
 		}
 		const formData = new FormData();
 		formData.append("productName", productInput.productName);

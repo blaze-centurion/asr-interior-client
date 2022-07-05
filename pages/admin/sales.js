@@ -1,6 +1,6 @@
 import AdminOrderDetailModalBox from "@/components/AdminOrderDetailModalBox";
 import AdminPanelLayout from "@/components/AdminPanelLayout";
-import { numberWithCommas } from "@/components/CartProductItem";
+import { numberWithCommas } from "utils/utils";
 import ModalBox from "@/components/ModalBox";
 import styles from "@/styles/AdminPanel/Product.module.css";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -27,12 +27,12 @@ const Sales = ({ orders }) => {
 		customerName: "",
 		customerEmail: "",
 		orderStatus: "",
-		deliveryStatus: "",
-		paymentStatus: "",
+		deliveryStatus: false,
+		paymentStatus: false,
 		totalPrice: "",
 		shippingAddress: "",
 		paymentMethod: "",
-		product: {},
+		products: [],
 	});
 
 	const configureOrderModalBox = (order, orderDate) => {
@@ -45,7 +45,7 @@ const Sales = ({ orders }) => {
 			totalPrice: order.totalPrice,
 			shippingAddress: order.shippingAddress.address,
 			paymentMethod: order.paymentMethod,
-			product: order.product,
+			products: order.products,
 			deliveryStatus: order.deliveryStatus,
 			paymentStatus: order.paymentStatus,
 		});
@@ -58,8 +58,7 @@ const Sales = ({ orders }) => {
 				ref={modalRef}
 				headerTitle={`Order id: ${currOrder.orderCode}`}
 			>
-				<AdminOrderDetailModalBox
-				 {...currOrder} />
+				<AdminOrderDetailModalBox {...currOrder} />
 			</ModalBox>
 			<AdminPanelLayout>
 				<div className={styles.product_container}>
@@ -87,9 +86,12 @@ const Sales = ({ orders }) => {
 								</thead>
 								<tbody>
 									{orders.map((order) => {
-										return order.orders.map(
-											(singleOrder, i) => {
-												let date = new Date(singleOrder.date);
+										return order.orders
+											.reverse()
+											.map((singleOrder, i) => {
+												let date = new Date(
+													singleOrder.date
+												);
 												let orderDate =
 													date.getDate() +
 													"-" +
@@ -99,7 +101,9 @@ const Sales = ({ orders }) => {
 													" " +
 													date.toLocaleTimeString();
 												return (
-													<React.Fragment key={Math.random()}>
+													<React.Fragment
+														key={Math.random()}
+													>
 														<tr>
 															<td data-label="#">
 																{i + 1}
@@ -171,8 +175,7 @@ const Sales = ({ orders }) => {
 														</tr>
 													</React.Fragment>
 												);
-											}
-										);
+											});
 									})}
 								</tbody>
 							</table>

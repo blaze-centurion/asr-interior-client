@@ -12,7 +12,7 @@ import OrderDetailsModalBoxContent from "@/components/OrderDetailsModalBoxConten
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { useContext, useRef, useState } from "react";
 import { GlobalUserContext } from "./_app";
-import { numberWithCommas } from "@/components/CartProductItem";
+import { numberWithCommas } from "utils/utils";
 import Link from "next/link";
 
 export async function getServerSideProps(ctx) {
@@ -49,7 +49,7 @@ const Dashboard = ({ userData, orders }) => {
 		totalPrice: "",
 		shippingAddress: "",
 		paymentMethod: "",
-		product: {},
+		products: [],
 	});
 	const { currUserInfo } = useContext(GlobalUserContext);
 
@@ -170,10 +170,17 @@ const Dashboard = ({ userData, orders }) => {
 															{i + 1}
 														</td>
 														<td data-label="Product">
-															{
-																order.product
-																	.productName
-															}
+															<Link
+																href={`/products/${order.products[0].productName}`}
+															>
+																<a>
+																	{
+																		order
+																			.products[0]
+																			.productName
+																	}
+																</a>
+															</Link>
 														</td>
 														<td data-label="Amount">
 															₹
@@ -219,8 +226,8 @@ const Dashboard = ({ userData, orders }) => {
 																					.address,
 																			paymentMethod:
 																				order.paymentMethod,
-																			product:
-																				order.product,
+																			products:
+																				order.products,
 																		}
 																	);
 																	modalRef.current.classList.add(

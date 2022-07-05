@@ -58,7 +58,6 @@ const Product = ({ data }) => {
 			>
 				{breadcrumbs}
 			</Breadcrumbs>
-			<ToastContainer position="bottom-left" />
 			<div className={styles.product_container}>
 				<ProductInfoCard data={data} />
 				<div className={styles.more_details_container}>

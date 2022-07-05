@@ -6,10 +6,7 @@ import { useEffect, useState } from "react";
 import CounterBox from "./CounterBox";
 import { useRouter } from "next/router";
 import axios from "axios";
-
-export function numberWithCommas(x) {
-	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+import { numberWithCommas } from "utils/utils";
 
 const CartProductItem = ({
 	pName,
@@ -48,7 +45,7 @@ const CartProductItem = ({
 			);
 		}
 		changeProductQty();
-	}, [inputQty]);
+	}, [inputQty, pid, qty]);
 
 	const removeFromWishlist = async () => {
 		const res = await fetch(`${SERVER_URL}/removeFromCart`, {

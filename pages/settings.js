@@ -43,6 +43,16 @@ const Settings = ({ userData }) => {
 		password: "",
 		cpassword: "",
 	});
+	const [editAddress, setEditAddress] = useState({
+		isEditing: false,
+		address: "",
+		state: "",
+		city: "",
+		phone: "",
+		postalCode: "",
+		country: "",
+		id: "",
+	});
 
 	useEffect(() => {
 		if (!userData) {
@@ -160,8 +170,18 @@ const Settings = ({ userData }) => {
 				ref={modalRef}
 				headerTitle="Add New Address"
 				modalInnerStyle={{ width: "35vw", height: "auto" }}
+				setEditAddress={setEditAddress}
 			>
-				<AddressModal />
+				<AddressModal
+					isEditing={editAddress.isEditing}
+					addressProp={editAddress.address}
+					stateProp={editAddress.state}
+					cityProp={editAddress.city}
+					phoneProp={editAddress.phone}
+					postalCodeProp={editAddress.postalCode}
+					countryProp={editAddress.country}
+					id={editAddress.id}
+				/>
 			</ModalBox>
 			<PanelLayout topBarTitle="Settings">
 				<Card title="Basic Info" cardStyle={{ margin: "15px" }}>
@@ -246,6 +266,8 @@ const Settings = ({ userData }) => {
 								phone={val.phone}
 								isDefault={val.isDefault}
 								id={val._id}
+								ref={modalRef}
+								setEditAddress={setEditAddress}
 							/>
 						))}
 						<div

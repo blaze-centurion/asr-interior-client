@@ -1,7 +1,7 @@
-import { numberWithCommas } from "@/components/CartProductItem";
+import { numberWithCommas } from "utils/utils";
 import { SERVER_URL } from "config/config";
 import { toast, ToastContainer } from "react-toastify";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import CardNavigation from "@/components/CardNavigation";
@@ -11,11 +11,12 @@ import Link from "next/link";
 import PaymentMethodItem from "@/components/PaymentMethodItem";
 
 import cod from "@/public/cod.png";
-import instamojo from "@/public/instamojo.png";
-import paypal from "@/public/paypal.png";
-import stripe from "@/public/stripe.png";
+import razorpay from "@/public/razorpay.svg";
 import styles from "@/styles/Cart.module.css";
 import Footer from "@/components/Footer";
+import displayRazorpay from "utils/PaymentGateway";
+import { GlobalUserContext } from "pages/_app";
+import { loadScript } from "utils/utils";
 
 export async function getServerSideProps(ctx) {
 	const res = await fetch(`${SERVER_URL}/getCartItems`, {
@@ -37,15 +38,28 @@ export async function getServerSideProps(ctx) {
 
 const Payment = ({ data }) => {
 	const router = useRouter();
-	const subtotal = useRef(0);
+	const [subtotal, setSubtotal] = useState(0);
 	const dependencies = data ? data.length : data;
+	const { currUserInfo } = useContext(GlobalUserContext);
+	const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(0); // 0 - Cash on Delivery; 1 - Online Payment
 
 	useEffect(() => {
 		if (!data) return;
 		if (data.length === 0) router.push("/");
 	}, [dependencies, router]);
 
-	
+	useEffect(() => {
+		loadScript("https://checkout.razorpay.com/v1/checkout.js");
+		setSubtotal(
+			data.reduce(
+				(previousValue, currentValue) =>
+					previousValue +
+					currentValue.discountedPrice * currentValue.qty,
+				0
+			)
+		);
+	}, [data]);
+
 	if (!data) {
 		return (
 			<>
@@ -65,37 +79,70 @@ const Payment = ({ data }) => {
 	}
 
 	const orderProduct = async (e) => {
-		e.preventDefault();
+		try {
+			e && e.preventDefault();
+			const products = data.map((product) => {
+				return {
+					productName: product.productName,
+					pid: product._id,
+					variation: product.variations[0].varId,
+					qty: product.qty,
+					price: product.discountedPrice,
+				};
+			});
 
-		const formData = new FormData();
-		formData.append(
-			"products",
-			JSON.stringify(
-				data.map((product) => {
-					return {
-						productName: product.productName,
-						pid: product._id,
-						variation: product.variations[0].varId,
-						qty: product.qty,
-						price: product.discountedPrice,
-					};
-				})
-			)
-		);
-		formData.append("totalPrice", subtotal.current);
-		formData.append("paymentMethod", "Cash On Delivery");
-		formData.append("shippingAddress", router.query.address);
-		formData.append("paymentStatus", false);
-		await toast.promise(
-			axios.patch(`${SERVER_URL}/orderProduct`, formData, {
-				withCredentials: true,
-			}),
-			{
-				pending: "Placing your order.",
-				success: "Order Placed Successfully!",
-				error: "Something went wrong. Please try again!",
-			}
-		);
+			const formData = new FormData();
+			formData.append("products", JSON.stringify(products));
+			formData.append("totalPrice", subtotal);
+			formData.append(
+				"paymentMethod",
+				selectedPaymentMethod === 0
+					? "Cash On Delivery"
+					: "Online Payment"
+			);
+			formData.append("shippingAddress", router.query.address);
+			formData.append(
+				"paymentStatus",
+				e.paymentStatus ? e.paymentStatus : false
+			);
+
+			await toast.promise(
+				axios.patch(`${SERVER_URL}/orderProduct`, formData, {
+					withCredentials: true,
+				}),
+				{
+					pending: "Placing your order.",
+					success: "Order Placed Successfully!",
+					error: "Something went wrong. Please try again!",
+				}
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const onlinePayment = async (e) => {
+		try {
+			e.preventDefault();
+			const products = data.map((product) => {
+				return {
+					productName: product.productName,
+					pid: product._id,
+					variation: product.variations[0].varId,
+					qty: product.qty,
+					price: product.discountedPrice,
+				};
+			});
+			displayRazorpay(
+				currUserInfo.name,
+				currUserInfo.email,
+				currUserInfo.phone,
+				products,
+				orderProduct
+			);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (
@@ -116,24 +163,28 @@ const Payment = ({ data }) => {
 							</div>
 							<div className={styles.cart_card_payment_box}>
 								<PaymentMethodItem
-									src={paypal}
-									alt="Paypal"
-									name="Paypal"
-								/>
-								<PaymentMethodItem
-									src={stripe}
-									alt="Stripe"
-									name="Stripe"
-								/>
-								<PaymentMethodItem
-									src={instamojo}
-									alt="Instamojo"
-									name="Instamojo"
+									src={razorpay}
+									alt="Razorpay"
+									name="Razorpay"
+									id={1}
+									selectedPaymentMethod={
+										selectedPaymentMethod
+									}
+									setSelectedPaymentMethod={
+										setSelectedPaymentMethod
+									}
 								/>
 								<PaymentMethodItem
 									src={cod}
 									alt="Cash On Delivery"
 									name="Cash On Delivery"
+									id={0}
+									selectedPaymentMethod={
+										selectedPaymentMethod
+									}
+									setSelectedPaymentMethod={
+										setSelectedPaymentMethod
+									}
 								/>
 							</div>
 						</div>
@@ -164,9 +215,6 @@ const Payment = ({ data }) => {
 											className={styles.sub_products_list}
 										>
 											{data.map((product, ind) => {
-												subtotal.current +=
-													product.discountedPrice *
-													product.qty;
 												return (
 													<li key={ind}>
 														<label>
@@ -213,10 +261,7 @@ const Payment = ({ data }) => {
 											<label
 												className={`${styles.labelVal}`}
 											>
-												₹
-												{numberWithCommas(
-													subtotal.current
-												)}
+												₹{numberWithCommas(subtotal)}
 											</label>
 										</div>
 									</li>
@@ -252,10 +297,7 @@ const Payment = ({ data }) => {
 											<label
 												className={`${styles.labelVal}`}
 											>
-												₹
-												{numberWithCommas(
-													subtotal.current
-												)}
+												₹{numberWithCommas(subtotal)}
 											</label>
 										</div>
 									</li>
@@ -269,7 +311,11 @@ const Payment = ({ data }) => {
 					returnLink="/cart/shipping"
 					continueLink="/cart/payment"
 					continueTxt="Continue to payment"
-					continueValidator={orderProduct}
+					continueValidator={
+						selectedPaymentMethod === 0
+							? orderProduct
+							: onlinePayment
+					}
 					boxClass={styles.payment_cart_btn_box}
 				/>
 			</div>

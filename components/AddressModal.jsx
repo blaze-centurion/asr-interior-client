@@ -1,17 +1,38 @@
+import axios from "axios";
 import { SERVER_URL } from "config/config";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import validator from "validator";
 
-const AddressModal = () => {
+const AddressModal = ({
+	isEditing,
+	addressProp = "",
+	stateProp = "",
+	cityProp = "",
+	phoneProp = "",
+	postalCodeProp = "",
+	id,
+}) => {
 	const [input, setInput] = useState({
-		address: "",
-		state: "",
-		city: "",
-		phone: "",
-		postalCode: "",
+		address: addressProp,
+		state: stateProp,
+		city: cityProp,
+		phone: phoneProp,
+		postalCode: postalCodeProp,
 	});
 	const router = useRouter();
+
+	useEffect(() => {
+		if (!isEditing) return;
+		setInput({
+			address: addressProp,
+			state: stateProp,
+			city: cityProp,
+			phone: phoneProp,
+			postalCode: postalCodeProp,
+		});
+	}, [isEditing]);
 
 	const handleInput = (e) => {
 		const { name, value } = e.target;
@@ -20,34 +41,69 @@ const AddressModal = () => {
 
 	const addAddress = async (e) => {
 		e.preventDefault();
+		if (!address || !state || !city || !phone || !postalCode) {
+			return toast.error("Fill all the required fields.");
+		}
 		if (
 			!validator.isMobilePhone(input.phone) ||
 			!validator.isPostalCode(input.postalCode)
 		) {
-			return window.alert("Enter a valid phone number and postal code.");
+			return toast.error("Enter a valid phone number and postal code.");
 		}
-		const res = await fetch(`${SERVER_URL}/addAddress`, {
-			method: "PATCH",
-			credentials: "include",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				...input,
-				isDefault: false,
-				country: "India",
-				phone: parseInt(input.phone),
-				postalCode: parseInt(input.postalCode),
-			}),
-		});
-		if (res.status === 200) {
-			router.reload();
-		} else {
-			window.alert("Something went wrong.");
+		try {
+			const res = await fetch(`${SERVER_URL}/addAddress`, {
+				method: "PATCH",
+				credentials: "include",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					...input,
+					isDefault: false,
+					country: "India",
+					phone: parseInt(input.phone),
+					postalCode: parseInt(input.postalCode),
+				}),
+			});
+			if (res.status === 200) {
+				router.reload();
+			} else {
+				toast.error("Something went wrong.");
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const editAddress = async (e) => {
+		e.preventDefault();
+		try {
+			const res = await axios.patch(
+				`${SERVER_URL}/editAddress`,
+				{
+					id,
+					newAddress: {
+						address: input.address,
+						state: input.state,
+						city: input.city,
+						phone: input.phone,
+						postalCode: input.postalCode,
+						country: "India",
+					},
+				},
+				{ withCredentials: true }
+			);
+			if (res.status === 200) {
+				router.reload();
+			} else {
+				toast.error("Something went wrong.");
+			}
+		} catch (err) {
+			console.log(err);
 		}
 	};
 
 	return (
 		<>
-			<form onSubmit={addAddress}>
+			<form onSubmit={isEditing ? editAddress : addAddress}>
 				<div className="address_form_group">
 					<label>Address:</label>
 					<textarea
@@ -99,7 +155,10 @@ const AddressModal = () => {
 					/>
 				</div>
 				<div className="address_form_submit_group">
-					<input type="submit" value="Add Address" />
+					<input
+						type="submit"
+						value={isEditing ? "Update Address" : "Add Address"}
+					/>
 				</div>
 			</form>
 

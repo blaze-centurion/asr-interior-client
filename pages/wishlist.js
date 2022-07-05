@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import PanelLayout from "@/components/PanelLayout";
 import WishlistItem from "@/components/WishlistItem";
 import { SERVER_URL } from "config/config";
-import { numberWithCommas } from "@/components/CartProductItem";
+import { numberWithCommas } from "utils/utils";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import pusherJs from "pusher-js";

@@ -10,6 +10,7 @@ import "react-quill/dist/quill.snow.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import "../styles/globals.css";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 export const GlobalUserContext = createContext(0);
 
@@ -106,46 +107,51 @@ const GlobalContextComponent = ({ children }) => {
 function MyApp({ Component, pageProps }) {
 	return (
 		<>
-			<Head>
-				<link
-					rel="apple-touch-icon"
-					sizes="180x180"
-					href="/favicon/apple-touch-icon.png"
+			<ErrorBoundary>
+				<Head>
+					<link
+						rel="apple-touch-icon"
+						sizes="180x180"
+						href="/favicon/apple-touch-icon.png"
+					/>
+					<link
+						rel="icon"
+						type="image/png"
+						sizes="32x32"
+						href="/favicon/favicon-32x32.png"
+					/>
+					<link
+						rel="icon"
+						type="image/png"
+						sizes="16x16"
+						href="/favicon/favicon-16x16.png"
+					/>
+					<link rel="manifest" href="/favicon/site.webmanifest" />
+					<link
+						rel="mask-icon"
+						href="/favicon/safari-pinned-tab.svg"
+						color="#5bbad5"
+					/>
+					<meta name="msapplication-TileColor" content="#da532c" />
+					<meta name="theme-color" content="#ffffff" />
+					<meta
+						name="google-site-verification"
+						content="3YQVXDWqjsLXRozGPm2C6sydnhETUkF2C8wIQ-ATju0"
+					/>
+					<link rel="preconnect" href={SERVER_URL} />
+				</Head>
+				<NextSeo
+					title="ASR Interiors - The Best Interior Designers and Constructor in Delhi."
+					description="We are the best interior designers and constructors company in delhi. We make new furnitures, construct new houses and even renovate them into new one."
+					titleTemplate="ASR Interiors - The Best Interior Designers and Constructor in Delhi."
+					defaultTitle="ASR Interiors - The Best Interior Designers and Constructor in Delhi."
+					noindex={false}
+					nofollow={false}
 				/>
-				<link
-					rel="icon"
-					type="image/png"
-					sizes="32x32"
-					href="/favicon/favicon-32x32.png"
-				/>
-				<link
-					rel="icon"
-					type="image/png"
-					sizes="16x16"
-					href="/favicon/favicon-16x16.png"
-				/>
-				<link rel="manifest" href="/favicon/site.webmanifest" />
-				<link
-					rel="mask-icon"
-					href="/favicon/safari-pinned-tab.svg"
-					color="#5bbad5"
-				/>
-				<meta name="msapplication-TileColor" content="#da532c" />
-				<meta name="theme-color" content="#ffffff" />
-				<meta name="google-site-verification" content="3YQVXDWqjsLXRozGPm2C6sydnhETUkF2C8wIQ-ATju0" />
-				<link rel="preconnect" href={SERVER_URL} />
-			</Head>
-			<NextSeo
-				title="ASR Interiors - The Best Interior Designers and Constructor in Delhi."
-				description="We are the best interior designers and constructors company in delhi. We make new furnitures, construct new houses and even renovate them into new one."
-				titleTemplate="ASR Interiors - The Best Interior Designers and Constructor in Delhi."
-				defaultTitle="ASR Interiors - The Best Interior Designers and Constructor in Delhi."
-				noindex={false}
-				nofollow={false}
-			/>
-			<GlobalContextComponent>
-				<Component {...pageProps} />
-			</GlobalContextComponent>
+				<GlobalContextComponent>
+					<Component {...pageProps} />
+				</GlobalContextComponent>
+			</ErrorBoundary>
 		</>
 	);
 }

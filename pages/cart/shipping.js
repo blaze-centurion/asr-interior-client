@@ -33,6 +33,16 @@ export async function getServerSideProps(ctx) {
 const Shipping = ({ addresses }) => {
 	const modalRef = useRef();
 	const [selectedAddress, setSelectedAddress] = useState(0);
+	const [editAddress, setEditAddress] = useState({
+		isEditing: false,
+		address: "",
+		state: "",
+		city: "",
+		phone: "",
+		postalCode: "",
+		country: "",
+		id: "",
+	});
 
 	if (!addresses) {
 		return (
@@ -59,8 +69,18 @@ const Shipping = ({ addresses }) => {
 				ref={modalRef}
 				headerTitle="Add New Address"
 				modalInnerStyle={{ width: "35vw", height: "auto" }}
+				setEditAddress={setEditAddress}
 			>
-				<AddressModal />
+				<AddressModal
+					isEditing={editAddress.isEditing}
+					addressProp={editAddress.address}
+					stateProp={editAddress.state}
+					cityProp={editAddress.city}
+					phoneProp={editAddress.phone}
+					postalCodeProp={editAddress.postalCode}
+					countryProp={editAddress.country}
+					id={editAddress.id}
+				/>
 			</ModalBox>
 			<ToastContainer position="bottom-left" />
 			<div className={styles.cart_container}>
@@ -83,6 +103,8 @@ const Shipping = ({ addresses }) => {
 									id={address._id}
 									showCheckBox={true}
 									key={ind}
+									ref={modalRef}
+									setEditAddress={setEditAddress}
 								/>
 							);
 						})}

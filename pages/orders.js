@@ -7,7 +7,7 @@ import OrderDetailsModalBoxContent from "@/components/OrderDetailsModalBoxConten
 import PanelLayout from "@/components/PanelLayout";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { SERVER_URL } from "config/config";
-import { numberWithCommas } from "../components/CartProductItem";
+import { numberWithCommas } from "utils/utils";
 import { GlobalUserContext } from "./_app";
 import Link from "next/link";
 
@@ -39,7 +39,7 @@ const Orders = ({ data }) => {
 		totalPrice: "",
 		shippingAddress: "",
 		paymentMethod: "",
-		product: {},
+		products: [],
 	});
 
 	if (!data) {
@@ -68,7 +68,7 @@ const Orders = ({ data }) => {
 			totalPrice: order.totalPrice,
 			shippingAddress: order.shippingAddress.address,
 			paymentMethod: order.paymentMethod,
-			product: order.product,
+			products: order.products,
 			deliveryStatus: order.deliveryStatus,
 			paymentStatus: order.paymentStatus,
 		});
@@ -140,17 +140,17 @@ const Orders = ({ data }) => {
 											</td>
 											<td data-label="Product">
 												<Link
-													href={`/products/${order.product.productName}`}
+													href={`/products/${order.products[0].productName}`}
 												>
 													<a>
-														{order.product
+														{order.products[0]
 															.productName
 															.length > 23
-															? order.product.productName.substring(
+															? order.products[0].productName.substring(
 																	0,
 																	26
 															  ) + "..."
-															: order.product
+															: order.products[0]
 																	.productName}
 													</a>
 												</Link>

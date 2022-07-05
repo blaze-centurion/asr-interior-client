@@ -19,9 +19,11 @@ export async function getServerSideProps() {
 const Category = ({ categories }) => {
 	const deleteCategory = async (_id) => {
 		if (window.confirm("Are you sure you want to delete it.")) {
-			const res = await axios.delete(`${SERVER_URL}/deleteCategory/${_id}`);
+			const res = await axios.delete(
+				`${SERVER_URL}/deleteCategory/${_id}`
+			);
 			if (res.status === 200) {
-				window.location.reload()
+				window.location.reload();
 			} else {
 				toast.error("Something went wrong. Please try again!");
 			}
@@ -94,7 +96,10 @@ const Category = ({ categories }) => {
 															>
 																<DeleteOutlinedIcon className="icon" />
 															</button>
-															<Link href={`/admin/category/edit/${category._id}`} passHref>
+															<Link
+																href={`/admin/category/edit/${category._id}`}
+																passHref
+															>
 																<button className="viewBtn">
 																	<ModeEditOutlineOutlinedIcon className="icon" />
 																</button>

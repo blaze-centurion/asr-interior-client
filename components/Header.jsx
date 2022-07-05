@@ -27,6 +27,7 @@ const Header = () => {
 	const [categories, setCategories] = useState([]);
 	const [cartLen, setCartLen] = useState(0);
 	const [wishlistLen, setWishlistLen] = useState(0);
+	const [notificationLen, setNotificationLen] = useState(0);
 	const [profileItemState, setProfileItemState] = useState(false);
 	const [hamburderMenuState, setHamburderMenuState] = useState(false);
 
@@ -66,6 +67,16 @@ const Header = () => {
 				return false;
 			}
 		}
+
+		async function getUnseenNotificationsLen() {
+			const res = await axios.get(
+				`${SERVER_URL}/getUnseenNotificationsLen`,
+				{ withCredentials: true }
+			);
+			setNotificationLen(res.data.data);
+		}
+
+		getUnseenNotificationsLen();
 		getCategories();
 		getUserCartAndWishlistLen();
 
@@ -81,20 +92,27 @@ const Header = () => {
 	}, []);
 
 	useEffect(() => {
-		const pusher = new pusherJs("500067beb493b7501b08", {
+		const pusher = new pusherJs(process.env.NEXT_PUBLIC_PUSHER_KEY, {
 			cluster: "ap2",
 		});
 		const userChannel = pusher.subscribe("users");
+		const notificationChannel = pusher.subscribe("notifications");
 		userChannel.bind("update", (change) => {
 			setCartLen(change.cart.length);
 			setWishlistLen(change.wishlist.length);
+		});
+		notificationChannel.bind("insert", (change) => {
+			if (!change.notification.seen)
+				setNotificationLen((prev) => prev + 1);
 		});
 
 		return () => {
 			userChannel.unbind_all();
 			userChannel.unsubscribe();
+			notificationChannel.unbind_all();
+			notificationChannel.unsubscribe();
 		};
-	}, [cartLen, wishlistLen]);
+	}, [cartLen, wishlistLen, notificationLen]);
 
 	return (
 		<>
@@ -338,7 +356,7 @@ const Header = () => {
 												className={styles.ico}
 											/>
 											Notifications
-											<span>{0}</span>
+											<span>{notificationLen}</span>
 										</a>
 									</Link>
 								</li>
@@ -408,7 +426,7 @@ const Header = () => {
 											className={styles.ico}
 										/>
 										Notifications
-										<span>{0}</span>
+										<span>{notificationLen}</span>
 									</a>
 								</Link>
 							</li>

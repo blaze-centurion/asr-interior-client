@@ -6,7 +6,7 @@ import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStore
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { SERVER_URL } from "config/config";
 import { toast, ToastContainer } from "react-toastify";
-import { numberWithCommas } from "./CartProductItem";
+import { numberWithCommas } from "utils/utils";
 
 import CounterBox from "./CounterBox";
 import ModalBox from "./ModalBox";
@@ -29,7 +29,7 @@ const ProductInfoCard = ({ data }) => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ pid: data._id }),
 		});
-		
+
 		if (res.status === 200) {
 			toast.success("Item added to your wishlist.");
 		} else if (res.status === 401) {

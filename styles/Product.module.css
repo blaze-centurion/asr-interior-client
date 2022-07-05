@@ -104,7 +104,9 @@
 	margin: 0 15px;
 	border: none;
 	outline: none;
-	padding: 10px;
+	padding: 11px 15px;
+	font-family: var(--poppins);
+	font-size: 12px;
 	background-color: rgb(230 46 4 / 15%);
 	color: #fe6948;
 	border-radius: 5px;
@@ -210,6 +212,7 @@
 	.operBtn {
 	display: flex;
 	align-items: center;
+	font-family: var(--poppins);
 	border: none;
 	outline: none;
 	padding: 10px 15px;
@@ -512,7 +515,6 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(250px));
 		padding-right: 0;
-
 	}
 	.more_details_container .flex15 {
 		order: -1;
@@ -595,19 +597,19 @@
 		padding: 0.7rem 5px;
 	}
 	.product_container
-	.product_card.product_info_card
-	.content_container
-	.row
-	h1.title {
+		.product_card.product_info_card
+		.content_container
+		.row
+		h1.title {
 		font-size: 17px;
 	}
 
 	.product_container
-	.product_card.product_info_card
-	.content_container
-	.row
-	.flex_item_group.price_group
-	h3  {
+		.product_card.product_info_card
+		.content_container
+		.row
+		.flex_item_group.price_group
+		h3 {
 		font-size: 18px !important;
 	}
 }
@@ -618,11 +620,11 @@
 		.mainImg {
 		height: 200px;
 	}
-		.product_container
-	.product_card.product_info_card
-	.content_container
-	.row
-	h1.title {
+	.product_container
+		.product_card.product_info_card
+		.content_container
+		.row
+		h1.title {
 		font-size: 16px;
 	}
 }

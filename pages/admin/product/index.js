@@ -1,4 +1,4 @@
-import { numberWithCommas } from "@/components/CartProductItem";
+import { numberWithCommas } from "utils/utils";
 import { SERVER_URL } from "config/config";
 import AdminPanelLayout from "@/components/AdminPanelLayout";
 import axios from "axios";
@@ -18,13 +18,15 @@ export async function getServerSideProps() {
 	};
 }
 
-const Products = ({products}) => {
+const Products = ({ products }) => {
 	// const [products, setProducts] = useState(props.products)
 	const deleteProduct = async (_id) => {
 		if (window.confirm("Are you sure you want to delete it.")) {
-			const res = await axios.delete(`${SERVER_URL}/deleteProduct/${_id}`);
+			const res = await axios.delete(
+				`${SERVER_URL}/deleteProduct/${_id}`
+			);
 			if (res.status === 200) {
-				window.location.reload()
+				window.location.reload();
 			} else {
 				toast.error("Something went wrong. Please try again!");
 			}
@@ -77,7 +79,8 @@ const Products = ({products}) => {
 															src={
 																product
 																	.variations[0]
-																	.images[0].url
+																	.images[0]
+																	.url
 															}
 															alt={
 																product.productName
@@ -131,10 +134,20 @@ const Products = ({products}) => {
 																display: "flex",
 															}}
 														>
-															<button className="deleteBtn" onClick={() => deleteProduct(product._id)}>
+															<button
+																className="deleteBtn"
+																onClick={() =>
+																	deleteProduct(
+																		product._id
+																	)
+																}
+															>
 																<DeleteOutlinedIcon className="icon" />
 															</button>
-															<Link href={`/admin/product/edit/${product.slug}`} passHref>
+															<Link
+																href={`/admin/product/edit/${product.slug}`}
+																passHref
+															>
 																<button className="viewBtn">
 																	<ModeEditOutlineOutlinedIcon className="icon" />
 																</button>

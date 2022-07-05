@@ -79,6 +79,8 @@
 	.card_content
 	form
 	input[type="submit"] {
+	display: block;
+	font-family: var(--poppins);
 	margin-left: 10px;
 	outline: none;
 	border: none;

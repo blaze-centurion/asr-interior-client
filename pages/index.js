@@ -11,7 +11,6 @@ import Header from "../components/Header";
 const Index = () => {
 	return (
 		<>
-		
 			<ToastContainer position="bottom-left" />
 			<Header />
 			<HeroSection />

@@ -263,6 +263,11 @@ input[type="number"] {
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 }
 .modal_container .modal_inner .modal_header {
+	position: sticky;
+	top: 0;
+	left: 0;
+	background: #fff;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	padding: 10px 15px;
@@ -351,7 +356,7 @@ input[type="number"] {
 	label {
 	font-weight: 500;
 	font-size: 14px;
-	margin: 5px 0 5px 15px;
+	margin: 5px 0 10px 15px;
 	flex: 1;
 }
 .modal_container
@@ -375,7 +380,7 @@ input[type="number"] {
 	ul.order_summary_box
 	li
 	h4.h4_badge
-	p {
+	> p {
 	background: var(--toastify-color-error);
 	color: #fff;
 	display: inline;
@@ -392,7 +397,7 @@ input[type="number"] {
 	ul.order_summary_box
 	li
 	h4.h4_badge.success
-	p {
+	> p {
 	background: var(--toastify-color-success);
 }
 
@@ -445,6 +450,7 @@ input[type="number"] {
 	cursor: pointer;
 }
 .address_form_button_group {
+	font-family: var(--poppins);
 	background-color: #fe6948;
 	color: #fff;
 	border: 1px solid transparent;
@@ -603,6 +609,34 @@ input[type="number"] {
 	background-color: #ef486a;
 }
 
+/* Pagination */
+
+.paginations {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	padding: 15px 10px;
+}
+.paginations li {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 37px;
+	height: 37px;
+	font-family: var(--poppins);
+	font-size: 13px;
+	color: #444;
+	margin: 0px 3px;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.paginations li.active,
+.paginations li:hover {
+	background-color: #fe6948;
+	color: #fff;
+}
+
 @media (max-width: 768px) {
 	.order_table thead {
 		display: none;
@@ -628,7 +662,7 @@ input[type="number"] {
 		position: absolute;
 		left: 0;
 		width: 50%;
-		font-weight: 600;
+		font-weight: 500;
 		padding-left: 15px;
 		font-size: 14px;
 		text-align: left;
@@ -836,6 +870,24 @@ input[type="number"] {
 
 	.section_title {
 		font-size: 23px;
+	}
+
+	.modal_container
+		.modal_inner
+		.modal_content_container
+		.modal_card
+		.modal_card_content {
+		padding: 10px;
+	}
+	.modal_container
+		.modal_inner
+		.modal_content_container
+		.modal_card
+		.modal_card_content
+		ul.order_summary_box
+		li
+		label {
+		margin: 5px 10px;
 	}
 }
 

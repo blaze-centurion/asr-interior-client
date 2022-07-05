@@ -145,6 +145,10 @@
 	border-radius: 10px;
 	text-align: center;
 	margin: 5px 10px;
+	cursor: pointer;
+}
+.cart_card .cart_card_payment_box .cart_card_payment_box_item.active {
+	border-color: #fe6948;
 }
 .cart_card .cart_card_payment_box .cart_card_payment_box_item p {
 	font-weight: 500;

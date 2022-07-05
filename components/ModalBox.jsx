@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 const ModalBox = forwardRef(
-	({ headerTitle, children, modalInnerStyle }, ref) => {
+	({ headerTitle, children, modalInnerStyle, setEditAddress }, ref) => {
 		return (
 			<>
 				<section
@@ -11,15 +11,39 @@ const ModalBox = forwardRef(
 					onClick={(e) => {
 						if (e.target === ref.current)
 							ref.current.classList.remove("active");
+						if (setEditAddress) {
+							setEditAddress({
+								isEditing: false,
+								address: "",
+								state: "",
+								city: "",
+								phone: "",
+								postalCode: "",
+								country: "",
+								id: "",
+							});
+						}
 					}}
 				>
 					<div className="modal_inner" style={modalInnerStyle}>
 						<div className="modal_header">
 							<h3>{headerTitle}</h3>
 							<button
-								onClick={() =>
-									ref.current.classList.remove("active")
-								}
+								onClick={() => {
+									ref.current.classList.remove("active");
+									if (setEditAddress) {
+										setEditAddress({
+											isEditing: false,
+											address: "",
+											state: "",
+											city: "",
+											phone: "",
+											postalCode: "",
+											country: "",
+											id: "",
+										});
+									}
+								}}
 							>
 								<CloseOutlinedIcon />
 							</button>
