@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SERVER_URL } from "config/config";
+import { CLIENT_URL, SERVER_URL } from "config/config";
 
 export default async function displayRazorpay(
 	name,
@@ -13,12 +13,12 @@ export default async function displayRazorpay(
 	});
 
 	const options = {
-		key: "rzp_test_4Nx5Ado2yV3Au0",
+		key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
 		currency: data.currency,
 		amount: data.amount,
 		name: "ASR Interiors",
 		description: `Payment transaction for your order.`,
-		image: `${SERVER_URL}/logo.png`,
+		image: `${CLIENT_URL}/logo.png`,
 		order_id: data.id,
 		handler: function () {
 			cb({ paymentStatus: true });
