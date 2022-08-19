@@ -13,7 +13,10 @@ export async function getStaticProps() {
 	const varRes = await axios.get(`${SERVER_URL}/getVariations`);
 	const parentVars = await axios.get(`${SERVER_URL}/getParentVariations`);
 	return {
-		props: { variations: varRes.data.data, parentVariations: parentVars.data.data },
+		props: {
+			variations: varRes.data.data,
+			parentVariations: parentVars.data.data,
+		},
 	};
 }
 
@@ -30,30 +33,36 @@ const Variation = ({ variations, parentVariations }) => {
 			[e.target.name]: e.target.value,
 		}));
 
-    const deleteVariation = async (_id) => {
+	const deleteVariation = async (_id) => {
 		if (window.confirm("Are you sure you want to delete it.")) {
-            const res = await axios.delete(`${SERVER_URL}/deleteVariation/${_id}`);
-            if (res.status === 200) {
-                window.location.reload();
-            } else {
-                toast.error("Something went wrong. Please try again!");
-            }
-        }
+			const res = await axios.delete(
+				`${SERVER_URL}/deleteVariation/${_id}`
+			);
+			if (res.status === 200) {
+				window.location.reload();
+			} else {
+				toast.error("Something went wrong. Please try again!");
+			}
+		}
 	};
 
-    const addNewVariation = async () => {
-        const res = await axios.post(`${SERVER_URL}/addNewVariation`, {...varInput})
-        if (res.status === 201) {
-            window.location.reload()
-        } else {
-            toast.error("Something went wrong. Please try again!");
-        }
-    }
+	const addNewVariation = async () => {
+		if (!varInput.name || !varInput.parentVariation || varInput.value)
+			return;
 
+		const res = await axios.post(`${SERVER_URL}/addNewVariation`, {
+			...varInput,
+		});
+		if (res.status === 201) {
+			window.location.reload();
+		} else {
+			toast.error("Something went wrong. Please try again!");
+		}
+	};
 
 	return (
 		<>
-            <ToastContainer position="bottom-left" />
+			<ToastContainer position="bottom-left" />
 			<AdminPanelLayout>
 				<div
 					className={addVarstyles.product_grid_container}
@@ -87,16 +96,20 @@ const Variation = ({ variations, parentVariations }) => {
 												<React.Fragment key={ind}>
 													<tr>
 														<td data-label="#">
-															{ind+1}
+															{ind + 1}
 														</td>
 														<td data-label="Name">
 															{variation.name}
 														</td>
 														<td data-label="Parent Variation">
-															{variation.parentName}
+															{
+																variation.parentName
+															}
 														</td>
 														<td data-label="Value">
-															{variation.value ? variation.value : '-'}
+															{variation.value
+																? variation.value
+																: "-"}
 														</td>
 														<td
 															data-label="Options"
@@ -115,7 +128,9 @@ const Variation = ({ variations, parentVariations }) => {
 																<button
 																	className="deleteBtn"
 																	onClick={() =>
-																		deleteVariation(variation._id)
+																		deleteVariation(
+																			variation._id
+																		)
 																	}
 																>
 																	<DeleteOutlinedIcon className="icon" />
@@ -175,11 +190,11 @@ const Variation = ({ variations, parentVariations }) => {
 											onChange={handleInput}
 										/>
 									</li>
-								<div className={addVarstyles.btn_box}>
-									<button onClick={addNewVariation}>
-										Add New Variation
-									</button>
-								</div>
+									<div className={addVarstyles.btn_box}>
+										<button onClick={addNewVariation}>
+											Add New Variation
+										</button>
+									</div>
 								</ul>
 							</div>
 						</div>
