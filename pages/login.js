@@ -12,6 +12,7 @@ import loginPic from "@/public/login.svg";
 import styles from "@/styles/Login.Signup.module.css";
 import { GlobalUserContext } from "./_app";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
@@ -22,32 +23,36 @@ const Login = () => {
 	const loginUser = async (e) => {
 		e.preventDefault();
 
-		if (!email || !password)
-			return toast.error("Please fill all the required fields.");
+		try {
+			if (!email || !password)
+				return toast.error("Please fill all the required fields.");
 
-		const res = await fetch(`${SERVER_URL}/login`, {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			credentials: "include",
-			body: JSON.stringify({ email, password }),
-		});
+			const { status, data } = await axios.post(
+				`${SERVER_URL}/login`,
+				{ email, password },
+				{ withCredentials: true }
+			);
 
-		const data = await res.json();
-		if (res.status === 200) {
-			document.cookie = `jwtoken=${data.token}; expires=${new Date(
-				Date.now() + 25892000000
-			)}`;
-			setCurrUserInfo({
-				email: data.data.email,
-				name: data.data.name,
-				phone: data.data.phone,
-				loggedIn: true,
-			});
-			setPassword("");
-			setEmail("");
-			router.push("/");
-		} else {
-			toast.error(data.message);
+			if (status === 200) {
+				console.log(data.token);
+				document.cookie = `jwtoken=${data.token}; expires=${new Date(
+					Date.now() + 25892000000
+				)}`;
+				setCurrUserInfo({
+					email: data.data.email,
+					name: data.data.name,
+					phone: data.data.phone,
+					loggedIn: true,
+				});
+				setPassword("");
+				setEmail("");
+				router.push("/");
+				toast.success(data.message);
+			} else {
+				toast.error(data.message);
+			}
+		} catch (err) {
+			console.log(err);
 		}
 	};
 

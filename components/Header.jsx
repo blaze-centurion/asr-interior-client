@@ -32,11 +32,15 @@ const Header = () => {
 	const [hamburderMenuState, setHamburderMenuState] = useState(false);
 
 	const logout = async () => {
-		const res = await axios.get(`${SERVER_URL}/logout`, {
-			withCredentials: true,
-		});
-		if (res.status === 200) {
-			window.location.reload();
+		try {
+			const res = await axios.get(`${SERVER_URL}/logout`, {
+				withCredentials: true,
+			});
+			if (res.status === 200) {
+				window.location.reload();
+			}
+		} catch (err) {
+			console.log(err);
 		}
 	};
 
@@ -69,11 +73,15 @@ const Header = () => {
 		}
 
 		async function getUnseenNotificationsLen() {
-			const res = await axios.get(
-				`${SERVER_URL}/getUnseenNotificationsLen`,
-				{ withCredentials: true }
-			);
-			setNotificationLen(res.data.data);
+			try {
+				const res = await axios.get(
+					`${SERVER_URL}/getUnseenNotificationsLen`,
+					{ withCredentials: true }
+				);
+				setNotificationLen(res.data.data);
+			} catch (err) {
+				console.log(err);
+			}
 		}
 
 		getUnseenNotificationsLen();
