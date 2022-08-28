@@ -17,7 +17,7 @@ import { SERVER_URL } from "config/config";
 import axios from "axios";
 import pusherJs from "pusher-js";
 import avatar from "@/public/avatar.png";
-import menu from "@/public/menu (1).png";
+import menu from "@/public/menu-1.png";
 
 const Header = () => {
 	const router = useRouter();
@@ -460,7 +460,7 @@ const Header = () => {
 						}}
 					>
 						<div className={`${styles.avatar} ${styles.nonborder}`}>
-							<Image src={menu} alt="Avatar" />
+							<Image src={menu} alt="Menu" />
 						</div>
 						<ul className={styles.menu_box}>
 							<li>
