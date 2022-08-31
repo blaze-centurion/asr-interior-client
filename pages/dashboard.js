@@ -110,28 +110,42 @@ const Dashboard = ({ userData, orders }) => {
 					<div className={`${styles.card_container} ${styles.col2}`}>
 						<div>
 							<Card title="Default Shipping Address">
-								{userData.address
-									.filter((val) => val.isDefault)
-									.map((val, ind) => {
-										return (
-											<ul
-												className={
-													styles.address_detail
-												}
-												key={ind}
-											>
-												<li>Address : {val.address}</li>
-												<li>Country : {val.country}</li>
-												<li>State : {val.state}</li>
-												<li>City : {val.city}</li>
-												<li>
-													Postal Code :{" "}
-													{val.postalCode}
-												</li>
-												<li>Phone : {val.phone}</li>
-											</ul>
-										);
-									})}
+								{userData.address.length === 0 ? (
+									<div className={styles.no_order_txt}>
+										<p>
+											You don&apos;t have any address
+											available! Please add an address
+											from settings.
+										</p>
+									</div>
+								) : (
+									userData.address
+										.filter((val) => val.isDefault)
+										.map((val, ind) => {
+											return (
+												<ul
+													className={
+														styles.address_detail
+													}
+													key={ind}
+												>
+													<li>
+														Address : {val.address}
+													</li>
+													<li>
+														Country : {val.country}
+													</li>
+													<li>State : {val.state}</li>
+													<li>City : {val.city}</li>
+													<li>
+														Postal Code :{" "}
+														{val.postalCode}
+													</li>
+													<li>Phone : {val.phone}</li>
+												</ul>
+											);
+										})
+								)}
 							</Card>
 						</div>
 						<div>
