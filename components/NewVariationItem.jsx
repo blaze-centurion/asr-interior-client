@@ -4,7 +4,7 @@ import styles from "@/styles/AdminPanel/NewProduct.module.css";
 const NewVariationItem = ({ ind, setVariations, options, variations }) => {
 	return (
 		<>
-			<li>
+			<li className={styles.variationItemOption}>
 				<label>
 					<Selectbox
 						funcTwoParam={true}

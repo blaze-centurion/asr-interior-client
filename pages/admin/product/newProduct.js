@@ -333,9 +333,12 @@ const NewProduct = ({ categories, variationsData }) => {
 							</div>
 							<div className={styles.card_content}>
 								<ul className={styles.card_input_item}>
-									<li>
+									<li className={styles.checkbox_item}>
 										<label>Show Stock Quantity</label>
-										<div style={{ flex: "1" }}>
+										<div
+											style={{ flex: "1" }}
+											className={styles.checbox_box}
+										>
 											<Switch
 												defaultChecked
 												onChange={(e) =>

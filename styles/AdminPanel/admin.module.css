@@ -5,14 +5,29 @@
 	display: flex;
 }
 .admin_panel .sidebar {
-	width: 250px;
+	position: relative;
+	width: 0px;
 	height: 100%;
 	background: #141423;
+	overflow: hidden;
+	transition: all 0.3s;
+}
+.admin_panel .sidebar.active {
+	width: 250px;
+}
+.admin_panel .sidebar .logo .closeBtn {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	background: #1a1a27;
+	border: none;
+	outline: none;
+	color: #fff;
+	display: none;
 }
 
 .admin_panel .sidebar .logo {
 	background-color: #1a1a27;
-	width: 250px;
 	height: 60px;
 	position: relative;
 }
@@ -92,7 +107,8 @@
 	font-weight: normal;
 }
 .admin_panel .main_container {
-	width: 100%;
+	/* width: 100%; */
+	flex: 1;
 	overflow-y: auto;
 }
 .admin_panel .main_container .topbar {
@@ -136,4 +152,19 @@
 }
 .admin_panel .main_container .topbar .userDetails div p.role {
 	opacity: 0.6;
+}
+
+@media (max-width: 980px) {
+	.admin_panel .sidebar {
+		position: absolute;
+		width: 250px;
+		z-index: 100;
+	}
+	.admin_panel .sidebar.active {
+		width: 0px;
+	}
+
+	.admin_panel .sidebar .logo .closeBtn {
+		display: block;
+	}
 }

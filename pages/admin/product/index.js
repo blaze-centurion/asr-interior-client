@@ -6,7 +6,7 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 
 import styles from "@/styles/AdminPanel/Product.module.css";
 import { toast, ToastContainer } from "react-toastify";
@@ -19,7 +19,6 @@ export async function getServerSideProps() {
 }
 
 const Products = ({ products }) => {
-	// const [products, setProducts] = useState(props.products)
 	const deleteProduct = async (_id) => {
 		if (window.confirm("Are you sure you want to delete it.")) {
 			const res = await axios.delete(

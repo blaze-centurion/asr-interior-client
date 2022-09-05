@@ -9,9 +9,12 @@ import SidebarMenuItem from "@/components/SidebarMenuItem";
 import menu from "@/public/menu.png";
 import user from "@/public/user.jpg";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import SummarizeOutlinedIcon from '@mui/icons-material/SummarizeOutlined';
-import AbcOutlinedIcon from '@mui/icons-material/AbcOutlined';
-import DesktopWindowsOutlinedIcon from '@mui/icons-material/DesktopWindowsOutlined';
+import SummarizeOutlinedIcon from "@mui/icons-material/SummarizeOutlined";
+import AbcOutlinedIcon from "@mui/icons-material/AbcOutlined";
+import DesktopWindowsOutlinedIcon from "@mui/icons-material/DesktopWindowsOutlined";
+import CloseIcon from "@mui/icons-material/Close";
+import { useRef } from "react";
+import Link from "next/link";
 
 const MENU_LINK_DATA = [
 	{
@@ -33,14 +36,6 @@ const MENU_LINK_DATA = [
 				title: "Add New Product",
 				link: "/admin/product/newProduct",
 			},
-			// {
-			// 	title: "Category",
-			// 	link: "/admin/category",
-			// },
-			// {
-			// 	title: "Variations",
-			// 	link: "/admin/variations",
-			// },
 			{
 				title: "Product Reviews",
 				link: "/admin/dashboard",
@@ -86,12 +81,31 @@ const MENU_LINK_DATA = [
 ];
 
 const AdminPanelLayout = ({ children }) => {
+	const sidebarRef = useRef();
+
 	return (
 		<>
 			<div className={styles.admin_panel}>
-				<div className={styles.sidebar}>
+				<div
+					className={`${styles.sidebar} ${styles.active}`}
+					ref={sidebarRef}
+				>
 					<div className={styles.logo}>
-						<Image src={logo} alt="logo" />
+						<button
+							className={styles.closeBtn}
+							onClick={() =>
+								sidebarRef.current.classList.toggle(
+									styles.active
+								)
+							}
+						>
+							<CloseIcon />
+						</button>
+						<Link href="/">
+							<a>
+								<Image src={logo} alt="logo" />
+							</a>
+						</Link>
 					</div>
 					<div className={styles.menuBox}>
 						<ul>
@@ -109,7 +123,14 @@ const AdminPanelLayout = ({ children }) => {
 				</div>
 				<div className={styles.main_container}>
 					<div className={styles.topbar}>
-						<button className={styles.toggleBtn}>
+						<button
+							className={styles.toggleBtn}
+							onClick={() =>
+								sidebarRef.current.classList.toggle(
+									styles.active
+								)
+							}
+						>
 							<Image
 								src={menu}
 								alt="menu"

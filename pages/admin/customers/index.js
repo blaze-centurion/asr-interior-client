@@ -66,8 +66,11 @@ const Customers = ({ users }) => {
 													>
 														<Image
 															src={
-																user.profilePic.url
-																	? user.profilePic.url
+																user.profilePic
+																	.url
+																	? user
+																			.profilePic
+																			.url
 																	: userProfilePic
 															}
 															alt={user.name}

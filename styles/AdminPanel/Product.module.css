@@ -57,7 +57,6 @@
 	transform: translate(5px, 5px);
 }
 
-
 /* Notifications Styling */
 
 .admin_panel_notifications_box {
@@ -78,4 +77,19 @@
 	font-size: 13px;
 	font-family: var(--poppins);
 	opacity: 0.7;
+}
+
+@media (max-width: 460px) {
+	.product_container {
+		padding: 1rem 0px;
+	}
+	.product_container .product_container_header {
+		padding: 0 10px;
+	}
+	.admin_panel_card {
+		margin: 1.5rem 10px;
+	}
+	.product_container .product_container_header h1 {
+		font-size: 17px;
+	}
 }

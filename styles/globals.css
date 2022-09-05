@@ -637,46 +637,6 @@ input[type="number"] {
 	color: #fff;
 }
 
-@media (max-width: 768px) {
-	.order_table thead {
-		display: none;
-	}
-	.order_table,
-	.order_table tbody,
-	.order_table tr,
-	.order_table td {
-		display: block;
-		width: 100%;
-	}
-
-	.order_table tr {
-		margin-bottom: 15px;
-	}
-	.order_table tbody tr td {
-		text-align: right;
-		padding-left: 50%;
-		position: relative;
-	}
-	.order_table td::before {
-		content: attr(data-label);
-		position: absolute;
-		left: 0;
-		width: 50%;
-		font-weight: 500;
-		padding-left: 15px;
-		font-size: 14px;
-		text-align: left;
-	}
-	.order_table tbody.larger_font tr td.options {
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-	}
-	.counter_box {
-		justify-content: flex-end;
-	}
-}
-
 /* Counter box */
 
 .counter_box {
@@ -786,6 +746,49 @@ input[type="number"] {
 @media (max-width: 1200px) {
 	.breadcrumbs.product_page {
 		padding: 1rem 5rem 0 1rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.order_table thead {
+		display: none;
+	}
+	.order_table,
+	.order_table tbody,
+	.order_table tr,
+	.order_table td {
+		display: block;
+		width: 100%;
+	}
+
+	.order_table tr {
+		margin-bottom: 15px;
+	}
+	.order_table tbody tr td {
+		text-align: right;
+		padding-left: 50%;
+		position: relative;
+	}
+	.order_table td::before {
+		content: attr(data-label);
+		position: absolute;
+		left: 0;
+		width: 50%;
+		font-weight: 500;
+		padding-left: 15px;
+		font-size: 14px;
+		text-align: left;
+	}
+	.order_table tbody.larger_font tr td.options {
+		display: flex !important;
+		align-items: center;
+		justify-content: flex-end;
+	}
+	.order_table tbody tr td.options {
+		display: flex !important;
+	}
+	.counter_box {
+		justify-content: flex-end;
 	}
 }
 
