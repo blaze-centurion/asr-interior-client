@@ -18,6 +18,7 @@ import axios from "axios";
 import pusherJs from "pusher-js";
 import avatar from "@/public/avatar.png";
 import menu from "@/public/menu-1.png";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 
 const Header = () => {
 	const router = useRouter();
@@ -31,19 +32,6 @@ const Header = () => {
 	const [profileItemState, setProfileItemState] = useState(false);
 	const [hamburderMenuState, setHamburderMenuState] = useState(false);
 
-	const logout = async () => {
-		try {
-			const res = await axios.get(`${SERVER_URL}/logout`, {
-				withCredentials: true,
-			});
-			if (res.status === 200) {
-				window.location.reload();
-			}
-		} catch (err) {
-			console.log(err);
-		}
-	};
-
 	useEffect(() => {
 		async function getCategories() {
 			try {
@@ -56,6 +44,10 @@ const Header = () => {
 				return false;
 			}
 		}
+		getCategories();
+	}, []);
+
+	useEffect(() => {
 		async function getUserCartAndWishlistLen() {
 			try {
 				const res = await axios.get(
@@ -85,15 +77,9 @@ const Header = () => {
 		}
 
 		getUnseenNotificationsLen();
-		getCategories();
 		getUserCartAndWishlistLen();
 
-		function closeAllMenu() {
-			setProfileItemState(false);
-			setHamburderMenuState(false);
-		}
 		window.addEventListener("click", closeAllMenu);
-
 		return () => {
 			window.removeEventListener("click", closeAllMenu);
 		};
@@ -121,6 +107,24 @@ const Header = () => {
 			notificationChannel.unsubscribe();
 		};
 	}, [cartLen, wishlistLen, notificationLen]);
+
+	function closeAllMenu() {
+		setProfileItemState(false);
+		setHamburderMenuState(false);
+	}
+
+	const logout = async () => {
+		try {
+			const res = await axios.get(`${SERVER_URL}/logout`, {
+				withCredentials: true,
+			});
+			if (res.status === 200) {
+				window.location.reload();
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	return (
 		<>
@@ -325,12 +329,24 @@ const Header = () => {
 								<Image src={avatar} alt="Avatar" />
 							</div>
 							<ul className={styles.menu_box}>
+								{currUserInfo.role ? (
+									<li>
+										<Link href="/admin/dashboard">
+											<a>
+												<AdminPanelSettingsIcon
+													className={styles.ico}
+												/>
+												Admin Panel
+											</a>
+										</Link>
+									</li>
+								) : null}
 								<li>
 									<Link href="/dashboard">
 										<a>
 											<DesktopWindowsIcon
 												className={styles.ico}
-											/>{" "}
+											/>
 											My Panel
 										</a>
 									</Link>
@@ -382,7 +398,7 @@ const Header = () => {
 						</li>
 					)}
 
-					<li
+					{/* <li
 						className={`${styles.profile_item} ${styles.mediaq} ${
 							profileItemState ? styles.active : "non-active"
 						}`}
@@ -400,7 +416,7 @@ const Header = () => {
 									<a>
 										<DesktopWindowsIcon
 											className={styles.ico}
-										/>{" "}
+										/>
 										My Panel
 									</a>
 								</Link>
@@ -447,7 +463,7 @@ const Header = () => {
 								</Link>
 							</li>
 						</ul>
-					</li>
+					</li> */}
 					<li
 						className={`${styles.hamburger_menu} ${
 							styles.profile_item

@@ -4,13 +4,13 @@ import { NextSeo } from "next-seo";
 import { SERVER_URL } from "config/config";
 import { useRouter } from "next/router";
 import axios from "axios";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import Head from "next/head";
 
 import "react-quill/dist/quill.snow.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import "../styles/globals.css";
-import ErrorBoundary from "@/components/ErrorBoundary";
 
 export const GlobalUserContext = createContext(0);
 
@@ -21,6 +21,7 @@ const GlobalContextComponent = ({ children }) => {
 		phone: "",
 		profilePic: "",
 		loggedIn: false,
+		role: false,
 	});
 	const [authorized, setAuthorized] = useState(true);
 	const router = useRouter();
@@ -63,6 +64,7 @@ const GlobalContextComponent = ({ children }) => {
 					phone: data.phone,
 					profilePic: data.profilePic,
 					loggedIn: true,
+					role: true,
 				});
 			} else {
 				setAuthorized(false);
@@ -76,6 +78,7 @@ const GlobalContextComponent = ({ children }) => {
 				phone: data.phone,
 				profilePic: data.profilePic,
 				loggedIn: status,
+				role: data.role === "admin" ? true : false,
 			});
 		}
 	}

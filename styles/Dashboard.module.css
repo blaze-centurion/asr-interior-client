@@ -8,22 +8,22 @@
 	grid-gap: 20px;
 	padding: 10px;
 }
-.dashboard_container .card_container .badge_card {
+.badge_card {
 	background-color: #47c5f4;
 	background-image: linear-gradient(315deg, #47c5f4 0%, #6791d9 74%);
 	border-radius: 5px;
 	position: relative;
 	min-height: 160px;
 }
-.dashboard_container .card_container .badge_card .content {
+.badge_card .content {
 	padding: 15px;
 }
-.dashboard_container .card_container .badge_card .content h3 {
+.badge_card .content h3 {
 	color: #fff;
 	font-size: 25px;
 	font-family: var(--poppins);
 }
-.dashboard_container .card_container .badge_card .content h5 {
+.badge_card .content h5 {
 	color: #fff;
 	opacity: 0.4;
 	font-weight: 400;
@@ -87,7 +87,7 @@
 	.card {
 		margin: 15px 0 !important;
 	}
-.card .card_content {
-	padding: 1rem 10px;
-}
+	.card .card_content {
+		padding: 1rem 10px;
+	}
 }

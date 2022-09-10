@@ -34,7 +34,6 @@ const Login = () => {
 			);
 
 			if (status === 200) {
-				console.log(data.token);
 				document.cookie = `jwtoken=${data.token}; expires=${new Date(
 					Date.now() + 25892000000
 				)}`;

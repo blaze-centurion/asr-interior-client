@@ -31,6 +31,18 @@
 	padding: 1rem;
 	border-radius: 10px 10px 0 0;
 }
+.closeBtn {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #fff;
+	padding: 5px 10px !important;
+}
+.closeBtn:hover,
+.closeBtn:active {
+	background: transparent !important;
+}
 
 .panelLayoutContainer .sidebar .sidebar_topBox img {
 	border-radius: 50%;
@@ -137,6 +149,16 @@
 	.panelLayoutContainer .sidebar {
 		width: 0;
 		margin-left: 0;
+		position: absolute;
+		top: 0;
+		left: -100px;
+		z-index: 100;
+	}
+	.panelLayoutContainer .sidebar.active {
+		left: -20px;
+	}
+	.closeBtn {
+		display: block;
 	}
 	.panelLayoutContainer .main_container .topBar button {
 		display: flex;

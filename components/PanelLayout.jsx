@@ -12,23 +12,30 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { GlobalUserContext } from "pages/_app";
+import CloseIcon from "@mui/icons-material/Close";
 
 const PanelLayout = ({ children, topBarTitle }) => {
 	const router = useRouter();
 	const { currUserInfo } = useContext(GlobalUserContext);
-	const [sidebarActive, setSidebarActive] = useState(false)
+	const [sidebarActive, setSidebarActive] = useState(false);
 
 	return (
 		<>
 			<div className={styles.panelLayoutContainer}>
-				<div className={`${styles.sidebar} ${sidebarActive ? styles.active : null}`}>
+				<div
+					className={`${styles.sidebar} ${
+						sidebarActive ? styles.active : null
+					}`}
+				>
 					<div className={styles.sidebar_topBox}>
 						<div style={{ textAlign: "center" }}>
 							<Image
 								className={styles.img}
 								src={
 									currUserInfo.profilePic
-										? currUserInfo.profilePic.url ?currUserInfo.profilePic.url : userImg 
+										? currUserInfo.profilePic.url
+											? currUserInfo.profilePic.url
+											: userImg
 										: userImg
 								}
 								width={64}
@@ -36,6 +43,12 @@ const PanelLayout = ({ children, topBarTitle }) => {
 								alt={currUserInfo.name}
 							/>
 						</div>
+						<button
+							onClick={() => setSidebarActive(false)}
+							className={styles.closeBtn}
+						>
+							<CloseIcon />
+						</button>
 						<h3 className={styles.userName}>{currUserInfo.name}</h3>
 						<h4 className={styles.userEmail}>
 							{currUserInfo.email}
@@ -139,7 +152,9 @@ const PanelLayout = ({ children, topBarTitle }) => {
 				</div>
 				<div className={styles.main_container}>
 					<div className={styles.topBar}>
-						<button onClick={() => setSidebarActive(prev => !prev)}>
+						<button
+							onClick={() => setSidebarActive((prev) => !prev)}
+						>
 							<Image src={menuImg} alt="menu icon"></Image>
 						</button>
 						<h3>{topBarTitle}</h3>
