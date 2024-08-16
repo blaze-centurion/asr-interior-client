@@ -8,3 +8,5 @@ Feel free to explore the website.
 ### Admin
 email: roshan@mail.com
 password: admin
+
+Note: Server is in private repo.
