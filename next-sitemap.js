@@ -1,4 +1,5 @@
-const siteUrl = "https://asr-interior.com";
+// const siteUrl = "https://asr-interior.com";
+const siteUrl = "https://asr-interior.netlify.app";
 
 module.exports = {
 	siteUrl,
