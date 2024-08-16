@@ -40,7 +40,7 @@ const Contact = () => {
 				<div className={styles.contact_form_container}>
 					<h3 className={styles.card_title}>Contact Us</h3>
 					<div className={styles.card_content}>
-						<h4>Phone Number: +91 9811212512</h4>
+						<h4>Phone Number: +91 9811212523</h4>
 						<h4>Or</h4>
 						<h4>Email Us:</h4>
 						<form onSubmit={sendMessage}>
@@ -71,7 +71,7 @@ const Contact = () => {
 								<input
 									type="text"
 									id="email_to_input"
-									value="vijaysharma09811@gmail.com"
+									value="sharmaa.roshan11@gmail.com"
 									readOnly
 									style={{ cursor: "not-allowed" }}
 								/>
