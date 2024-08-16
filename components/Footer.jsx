@@ -66,12 +66,12 @@ const Footer = () => {
 							</li>
 							<li>
 								<label>Phone:</label>
-								<h3>+91 9811212512</h3>
+								<h3>+91 9811212523</h3>
 							</li>
 							<li>
 								<label>Email:</label>
 								<h3 style={{ textTransform: "none" }}>
-									vijaysharma09811@gmail.com
+									sharmaa.roshan11@gmail.com
 								</h3>
 							</li>
 						</LinkBox>
